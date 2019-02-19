@@ -24,8 +24,8 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 	private static JFrame frame;
 	private static MainPanel mp;
 	
-	private static final int widthShrink = 600;
-	private static final int heightShrink = 300;
+	private static final int widthShrink = 1000;
+	private static final int heightShrink = 500;
 	
 	public static void main(String args[]) {
 		new ASMR();
