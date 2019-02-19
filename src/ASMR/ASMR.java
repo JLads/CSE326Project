@@ -12,17 +12,20 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import GUI.MainFrame;
 import GUI.MainPanel;
 
 /**
- * A class that implements the main ASMR window and starts the whole application
+ * A class that implements the main window of the ASMR software
  * @author nicholas
  *
  */
 public class ASMR implements UncaughtExceptionHandler, WindowListener {
-	private static final int widthShrink = 20;
-	private static final int heightShrink = 50;
+	
+	private static JFrame frame;
+	private static MainPanel mp;
+	
+	private static final int widthShrink = 600;
+	private static final int heightShrink = 300;
 	
 	public static void main(String args[]) {
 		new ASMR();
@@ -32,26 +35,24 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 		Thread.setDefaultUncaughtExceptionHandler(this);
 
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		
-		JFrame mf = new MainFrame("Test");
-		
-		MainPanel mp = new MainPanel();
+		frame = new JFrame("Test");
+		mp = new MainPanel();
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 
 				@Override
 				public void run() {
-					mf.add(mp);
-					mf.pack();
+					frame.add(mp);
+					frame.pack();
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle loc = gd.getDefaultConfiguration().getBounds();
-					mf.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
-					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					mf.addWindowListener(ASMR.this);
-					mf.setIconImage(null);
-					mf.setVisible(true);
+					frame.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.addWindowListener(ASMR.this);
+					frame.setIconImage(null);
+					frame.setVisible(true);
 				}
 				
 			});

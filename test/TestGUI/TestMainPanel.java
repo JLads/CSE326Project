@@ -9,27 +9,26 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import GUI.MainFrame;
 import GUI.MainPanel;
 
 /**
- * A class for testing the primary GUI classes
+ * A class to test the main panel of the gui
  * @author nicholas
  *
  */
-public class TestMainFrame {
-		
-	private static final int widthShrink = 400;
-	private static final int heightShrink = 500;
+public class TestMainPanel {
+	
+	private static final int widthShrink = 600;
+	private static final int heightShrink = 300;
 	
 	public static void main(String args[]) {
-		new TestMainFrame();
+		new TestMainPanel();
 	}
 	
-	private TestMainFrame() {
+	private TestMainPanel() {
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		
-		JFrame mf = new MainFrame("Test");
+		JFrame frame = new JFrame("Test");
 		
 		MainPanel mp = new MainPanel();
 		
@@ -38,15 +37,15 @@ public class TestMainFrame {
 
 				@Override
 				public void run() {
-					mf.add(mp);
-					mf.pack();
+					frame.add(mp);
+					frame.pack();
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle loc = gd.getDefaultConfiguration().getBounds();
-					mf.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
-					mf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					mf.setIconImage(null);
-					mf.setVisible(true);
+					frame.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setIconImage(null);
+					frame.setVisible(true);
 				}
 				
 			});
