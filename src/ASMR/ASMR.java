@@ -12,7 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import GUI.MainPanel;
+import ASMR.GUI.MainPanel;
 
 /**
  * A class that implements the main window of the ASMR software

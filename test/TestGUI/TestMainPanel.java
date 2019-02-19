@@ -9,7 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import GUI.MainPanel;
+import ASMR.GUI.MainPanel;
 
 /**
  * A class to test the main panel of the gui

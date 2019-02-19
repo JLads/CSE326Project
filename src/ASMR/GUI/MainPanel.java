@@ -1,4 +1,4 @@
-package GUI;
+package ASMR.GUI;
 
 import javax.swing.JPanel;
 
