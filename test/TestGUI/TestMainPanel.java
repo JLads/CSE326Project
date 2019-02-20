@@ -9,6 +9,7 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import ASMR.GUI.MainFrame;
 import ASMR.GUI.MainPanel;
 
 /**
@@ -28,7 +29,7 @@ public class TestMainPanel {
 	private TestMainPanel() {
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		
-		JFrame frame = new JFrame("Test");
+		MainFrame frame = new MainFrame("Test");
 		
 		MainPanel mp = new MainPanel();
 		
