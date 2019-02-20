@@ -9,24 +9,25 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import ASMR.GUI.AbstractPanel;
 import ASMR.GUI.MainFrame;
-import ASMR.GUI.MainPanel;
+import ASMR.GUI.SelectConfigPanel;
 
 /**
- * A class to test the main panel of the gui
+ * a class for testing the selectconfigpanel
  * @author nicholas
  *
  */
-public class TestMainPanel {
+public class TestSelectConfigPanel {
 	
-	private static final int widthShrink = 1000;
-	private static final int heightShrink = 500;
+	private static int widthShrink = 1000;
+	private static int heightShrink = 500;
 	
 	public static void main(String args[]) {
-		new TestMainPanel();
+		new TestSelectConfigPanel();
 	}
-	
-	private TestMainPanel() {
+
+	private TestSelectConfigPanel() {
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		
 		try {
@@ -35,7 +36,8 @@ public class TestMainPanel {
 				@Override
 				public void run() {
 					MainFrame frame = new MainFrame("Test");
-					frame.changePanel(new MainPanel(frame));
+					AbstractPanel.setFrame(frame);
+					frame.changePanel(new SelectConfigPanel());
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle gdb = gd.getDefaultConfiguration().getBounds();

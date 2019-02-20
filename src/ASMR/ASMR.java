@@ -12,18 +12,15 @@ import java.lang.reflect.InvocationTargetException;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import ASMR.GUI.MainFrame;
 import ASMR.GUI.MainPanel;
 
 /**
- * A class that implements the main window of the ASMR software
+ * A class that initiates and manages the ASMR software
  * @author nicholas
  *
  */
 public class ASMR implements UncaughtExceptionHandler, WindowListener {
-	
-	//the frame and panel of the main window
-	private static JFrame frame;
-	private static MainPanel mp;
 	
 	//the amount to subtract from the default window dimensions
 	private static final int widthShrink = 1000;
@@ -36,8 +33,6 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 
 		//establish graphics environment and establish window
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		frame = new JFrame("ASMR");
-		mp = new MainPanel();
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
@@ -45,8 +40,8 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 				@Override
 				public void run() {
 					//initialize window
-					frame.add(mp);
-					frame.pack();
+					MainFrame frame = new MainFrame("ASMR");
+					frame.changePanel(new MainPanel(frame));
 					
 					//configure window
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();

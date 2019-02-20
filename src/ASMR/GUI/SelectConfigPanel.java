@@ -8,30 +8,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 /**
- * A class that implements the main menu panel for the ASMR software
+ * a class for implementing the panel for selecting test config method
  * @author nicholas
  *
  */
-public class MainPanel extends AbstractPanel {
+public class SelectConfigPanel extends AbstractPanel{
 
-	private static final long serialVersionUID = 4110578378274635218L;
+	private static final long serialVersionUID = 3023418730573609694L;
 	
 	/**
 	 * default constructor
 	 */
-	public MainPanel() {
-		buildPanel();
-	}
-	
-	/**
-	 * constructor
-	 * @param newFrame and instance of the MainFrame class
-	 */
-	public MainPanel(MainFrame newFrame) {
-		AbstractPanel.setFrame(newFrame);
+	public SelectConfigPanel() {
 		buildPanel();
 	}
 
@@ -43,52 +33,58 @@ public class MainPanel extends AbstractPanel {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
-		
-		//title
-		JLabel label = new JLabel("ASMR");
-		label.setFont(new Font("Aerial", Font.PLAIN, 40));
-		gbc.gridy = 0;
-		this.add(label, gbc);
-		
-		//make components fill their grid
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		//button for running tests
-		JButton button1 = new JButton("Run Test");
+		//button for loading a sequence from a file
+		JButton button1 = new JButton("Load Sequence");
 		button1.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AbstractPanel.getFrame().changePanel(new SelectConfigPanel());
+				//TODO implement load sequence panel
+				new WIPWindow();
 			}
 		});
-		gbc.gridy = 1;
+		gbc.gridy = 0;
 		this.add(button1, gbc);
 		
-		//button for creating sequences
-		JButton button2 = new JButton("Create Sequence");
+		//button for configuring auto generation
+		JButton button2 = new JButton("Configured Generation");
 		button2.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement sequence creation panel
+				//TODO implement configured generation panel
 				new WIPWindow();
-			}
+			}			
 		});
-		gbc.gridy = 2;
+		gbc.gridy = 1;
 		this.add(button2, gbc);
 		
-		//button for analyzing result data
-		JButton button3 = new JButton("Analyze Results");
+		//button for random generation
+		JButton button3 = new JButton("Random Generation");
 		button3.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement data analysis panel
+				//TODO implement random generation panel
 				new WIPWindow();
 			}
 		});
-		gbc.gridy = 3;
+		gbc.gridy = 2;
 		this.add(button3, gbc);
+		
+		//button for returning to main panel
+		JButton button4 = new JButton("Return");
+		button4.setFont(new Font("Aerial", Font.PLAIN, 40));
+		button4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AbstractPanel.getFrame().changePanel(new MainPanel());
+			}
+		});
+		gbc.gridy = 3;
+		this.add(button4, gbc);
 	}
+
 }

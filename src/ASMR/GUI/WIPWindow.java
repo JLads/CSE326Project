@@ -20,6 +20,9 @@ import javax.swing.SwingUtilities;
  */
 public class WIPWindow {
 
+	/**
+	 * default constructor
+	 */
 	public WIPWindow() {
 		JFrame frame = new JFrame("Work In Progress");
 		JPanel panel = new JPanel();
