@@ -18,10 +18,10 @@ public class Test_Logger {
 	public Test_Logger() {
 		results = new HashMap<Integer, String>();
 	}
-	public void Log_Yes() {
+	public void Log_Yes(int test) {
 		
 	}
-	public void Log_No() {
+	public void Log_No(int test) {
 		
 	}
 	
