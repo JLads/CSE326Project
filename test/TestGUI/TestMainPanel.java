@@ -18,8 +18,8 @@ import ASMR.GUI.MainPanel;
  */
 public class TestMainPanel {
 	
-	private static final int widthShrink = 600;
-	private static final int heightShrink = 300;
+	private static final int widthShrink = 1000;
+	private static final int heightShrink = 500;
 	
 	public static void main(String args[]) {
 		new TestMainPanel();
@@ -41,8 +41,8 @@ public class TestMainPanel {
 					frame.pack();
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
-					Rectangle loc = gd.getDefaultConfiguration().getBounds();
-					frame.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
+					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
+					frame.setSize(new Dimension(gdb.width-widthShrink, gdb.height-heightShrink));
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setIconImage(null);
 					frame.setVisible(true);
