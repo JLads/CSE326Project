@@ -19,10 +19,17 @@ public class MainPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 4110578378274635218L;
 	
+	/**
+	 * default constructor
+	 */
 	public MainPanel() {
 		buildPanel();
 	}
 	
+	/**
+	 * constructor
+	 * @param newFrame and instance of the MainFrame class
+	 */
 	public MainPanel(MainFrame newFrame) {
 		AbstractPanel.setFrame(newFrame);
 		buildPanel();
@@ -40,7 +47,6 @@ public class MainPanel extends AbstractPanel {
 		//title
 		JLabel label = new JLabel("ASMR");
 		label.setFont(new Font("Aerial", Font.PLAIN, 40));
-		gbc.gridx = 2;
 		gbc.gridy = 0;
 		this.add(label, gbc);
 		
@@ -56,7 +62,6 @@ public class MainPanel extends AbstractPanel {
 				AbstractPanel.getFrame().changePanel(new SelectConfigPanel());
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 1;
 		this.add(button1, gbc);
 		
@@ -70,7 +75,6 @@ public class MainPanel extends AbstractPanel {
 				new WIPWindow();
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 2;
 		this.add(button2, gbc);
 		
@@ -84,7 +88,6 @@ public class MainPanel extends AbstractPanel {
 				new WIPWindow();
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 3;
 		this.add(button3, gbc);
 	}

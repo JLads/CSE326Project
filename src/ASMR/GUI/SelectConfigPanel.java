@@ -18,6 +18,9 @@ public class SelectConfigPanel extends AbstractPanel{
 
 	private static final long serialVersionUID = 3023418730573609694L;
 	
+	/**
+	 * default constructor
+	 */
 	public SelectConfigPanel() {
 		buildPanel();
 	}
@@ -38,10 +41,10 @@ public class SelectConfigPanel extends AbstractPanel{
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//TODO implement load sequence panel
 				new WIPWindow();
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 0;
 		this.add(button1, gbc);
 		
@@ -51,10 +54,10 @@ public class SelectConfigPanel extends AbstractPanel{
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//TODO implement configured generation panel
 				new WIPWindow();
 			}			
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 1;
 		this.add(button2, gbc);
 		
@@ -64,10 +67,10 @@ public class SelectConfigPanel extends AbstractPanel{
 		button3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//TODO implement random generation panel
 				new WIPWindow();
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 2;
 		this.add(button3, gbc);
 		
@@ -80,7 +83,6 @@ public class SelectConfigPanel extends AbstractPanel{
 				AbstractPanel.getFrame().changePanel(new MainPanel());
 			}
 		});
-		gbc.gridx = 2;
 		gbc.gridy = 3;
 		this.add(button4, gbc);
 	}

@@ -11,11 +11,20 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame{
 	
 	private static final long serialVersionUID = 1781446663380266615L;
-		
+	
+	/**
+	 * default constructor
+	 * @param title the title of the frame
+	 */
 	public MainFrame(String title) {
 		super(title);
 	}
 	
+	/**
+	 * constructor
+	 * @param title the title of the frame
+	 * @param newPanel an initial panel to load into the frame
+	 */
 	public MainFrame(String title, JPanel newPanel) {
 		super(title);
 		changePanel(newPanel);
