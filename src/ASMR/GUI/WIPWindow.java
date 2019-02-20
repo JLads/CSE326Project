@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * this class generates a window that indicates a feature is work in progress
+ * A class that generates a window that indicates a feature is work in progress
  * @author nicholas
  *
  */
@@ -28,23 +28,21 @@ public class WIPWindow {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);		
 		
+		//WIP message
 		JLabel label = new JLabel();
 		label.setText("This feature is currently unavailable...");
 		label.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridy = 0;
 		panel.add(label, gbc);
 		
+		//confurmation button
 		JButton button = new JButton("Return");
 		button.setFont(new Font("Return", Font.PLAIN, 20));
-		gbc.gridy = 1;
 		button.addActionListener(new ActionListener() {
-
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-			
+			public void actionPerformed(ActionEvent e) {frame.dispose();}
 		});
+		gbc.gridy = 1;
 		panel.add(button, gbc);
 		
 		SwingUtilities.invokeLater(new Runnable() {

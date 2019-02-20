@@ -41,8 +41,8 @@ public class TestMainPanel {
 					frame.pack();
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
-					Rectangle loc = gd.getDefaultConfiguration().getBounds();
-					frame.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
+					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
+					frame.setSize(new Dimension(gdb.width-widthShrink, gdb.height-heightShrink));
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setIconImage(null);
 					frame.setVisible(true);

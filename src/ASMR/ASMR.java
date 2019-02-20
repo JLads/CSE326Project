@@ -21,21 +21,22 @@ import ASMR.GUI.MainPanel;
  */
 public class ASMR implements UncaughtExceptionHandler, WindowListener {
 	
+	//the frame and panel of the main window
 	private static JFrame frame;
 	private static MainPanel mp;
 	
+	//the amount to subtract from the default window dimensions
 	private static final int widthShrink = 1000;
 	private static final int heightShrink = 500;
 	
-	public static void main(String args[]) {
-		new ASMR();
-	}
+	public static void main(String args[]) {new ASMR();}
 	
 	private ASMR() {
 		Thread.setDefaultUncaughtExceptionHandler(this);
 
+		//establish graphics environment and establish window
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		frame = new JFrame("Test");
+		frame = new JFrame("ASMR");
 		mp = new MainPanel();
 		
 		try {
@@ -43,12 +44,14 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 
 				@Override
 				public void run() {
+					//initialize window
 					frame.add(mp);
 					frame.pack();
 					
+					//configure window
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
-					Rectangle loc = gd.getDefaultConfiguration().getBounds();
-					frame.setSize(new Dimension(loc.width-widthShrink, loc.height-heightShrink));
+					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
+					frame.setSize(new Dimension(gdb.width-widthShrink, gdb.height-heightShrink));
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.addWindowListener(ASMR.this);
 					frame.setIconImage(null);
