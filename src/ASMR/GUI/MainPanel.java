@@ -19,8 +19,12 @@ public class MainPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = 4110578378274635218L;
 	
+	public MainPanel() {
+		buildPanel();
+	}
+	
 	public MainPanel(MainFrame newFrame) {
-		setFrame(newFrame);
+		AbstractPanel.setFrame(newFrame);
 		buildPanel();
 	}
 
@@ -49,8 +53,7 @@ public class MainPanel extends AbstractPanel {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement run test panel
-				getFrame().changePanel(new SelectConfigPanel());
+				AbstractPanel.getFrame().changePanel(new SelectConfigPanel());
 			}
 		});
 		gbc.gridx = 2;

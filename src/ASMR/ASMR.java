@@ -16,7 +16,7 @@ import ASMR.GUI.MainFrame;
 import ASMR.GUI.MainPanel;
 
 /**
- * A class that implements the main window of the ASMR software
+ * A class that initiates and manages the ASMR software
  * @author nicholas
  *
  */
@@ -41,8 +41,7 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 				public void run() {
 					//initialize window
 					MainFrame frame = new MainFrame("ASMR");
-					frame.add(new MainPanel(frame));
-					frame.pack();
+					frame.changePanel(new MainPanel(frame));
 					
 					//configure window
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
