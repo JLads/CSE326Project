@@ -9,18 +9,26 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * A class that implements the main menu panel for the ASMR software
  * @author nicholas
  *
  */
-public class MainPanel extends JPanel {
+public class MainPanel extends AbstractPanel {
 
-	private static final long serialVersionUID = 583870735382218103L;
+	private static final long serialVersionUID = 4110578378274635218L;
+	
+	public MainPanel(MainFrame newFrame) {
+		setFrame(newFrame);
+		buildPanel();
+	}
 
-	public MainPanel() {
+	/**
+	 * sets the contents of the panel
+	 */
+	@Override
+	public void buildPanel() {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
@@ -42,7 +50,7 @@ public class MainPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//TODO implement run test panel
-				new WIPWindow();
+				getFrame().changePanel(new SelectConfigPanel());
 			}
 		});
 		gbc.gridx = 2;

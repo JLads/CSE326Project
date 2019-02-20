@@ -29,16 +29,13 @@ public class TestMainPanel {
 	private TestMainPanel() {
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		
-		MainFrame frame = new MainFrame("Test");
-		
-		MainPanel mp = new MainPanel();
-		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 
 				@Override
 				public void run() {
-					frame.add(mp);
+					MainFrame frame = new MainFrame("Test");
+					frame.add(new MainPanel(frame));
 					frame.pack();
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
