@@ -11,23 +11,23 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
- * a class the implements the pre-test panel that instructs the user on what to do
+ * A class that implements the post-test panel
  * @author nicholas
  *
  */
-public class StartTestPanel extends AbstractPanel{
+public class EndTestPanel extends AbstractPanel {
 
-	private static final long serialVersionUID = -8425211744286408102L;
-
+	private static final long serialVersionUID = -5602972876983195916L;
+	
 	/**
 	 * default constructor
 	 */
-	public StartTestPanel() {
+	public EndTestPanel() {
 		buildPanel();
 	}
 	
 	/**
-	 * builds the contents of the panel
+	 * creates the contents of the panel
 	 */
 	@Override
 	public void buildPanel() {
@@ -36,42 +36,29 @@ public class StartTestPanel extends AbstractPanel{
 		gbc.insets = new Insets(10,10,10,10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		JLabel label1 = new JLabel("Directions for the test:");
+		JLabel label1 = new JLabel("Test Complete!");
 		label1.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=0;
 		this.add(label1, gbc);
 		
-		JLabel label2 = new JLabel("Press the 'Play Audio' button to play two sequences of audio clips.");
+		JLabel label2 = new JLabel("Please inform the individual running the test.");
 		label2.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=1;
 		this.add(label2, gbc);
 		
-		JLabel label3 = new JLabel("Press the 'Yes' or 'No' button if you believe the sequences are similar.");
-		label3.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
-		gbc.gridy=2;
-		this.add(label3, gbc);
-		
-		JLabel label4 = new JLabel("Press the button below to start the test.");
-		label4.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
-		gbc.gridy=3;
-		this.add(label4, gbc);
-		
-		JButton button = new JButton("Start Test");
+		JButton button = new JButton("Continue");
 		button.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO implement RunTestPanel
+				// TODO implement SaveResultsPanel
 				new WIPWindow();
 			}
 		});
 		gbc.gridx=0;
-		gbc.gridy=4;
+		gbc.gridy=2;
 		this.add(button, gbc);
 	}
-
 }
