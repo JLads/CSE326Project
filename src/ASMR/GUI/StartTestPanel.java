@@ -65,8 +65,7 @@ public class StartTestPanel extends AbstractPanel{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO implement RunTestPanel
-				new WIPWindow();
+				AbstractPanel.getFrame().changePanel(new RunTestPanel());
 			}
 		});
 		gbc.gridx=0;
