@@ -31,7 +31,7 @@ public class sound_playback_test {
 			
 			clip.open(st);
 			clip.start();
-			Thread.sleep(4000);
+			Thread.sleep(4500);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
