@@ -1,43 +1,41 @@
 package ASMR.Data;
-
+import ASMR.Util.*;
 import java.io.File;
 
-import javax.sound.sampled.*;
 
 public class sound_playback_test {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try {
-			File testfile = new File("killedkenny.wav");
-			AudioInputStream st;
-			AudioFormat fmt;
-			DataLine.Info info;
-			Clip clip;
-		
-			st = AudioSystem.getAudioInputStream(testfile);
-			fmt = st.getFormat();
-			info = new DataLine.Info(Clip.class, fmt);
-			clip = (Clip) AudioSystem.getLine(info);
+	
+	public static void instantiateTest() {
+		try{
+			File practiceTest = new File("practice.csv");
 			
-			clip.addLineListener(new LineListener() {
-				@Override
-				public void update(LineEvent event) {
-					if(event.getType() == LineEvent.Type.STOP) {
-						clip.close();
-					}
-				}
-			});
+			Test trial = new Test(practiceTest);
 			
-			clip.open(st);
-			clip.start();
-			Thread.sleep(4500);
-		}
-		catch (Exception e) {
+			trial.getFirst().printArray();
+			System.out.println();
+			trial.getSecond().printArray();
+			System.out.println();
+			System.out.println(trial.getAnswer());
+			System.out.println();
+			System.out.println(trial.getId());
+			
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		
-
 	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//working on class structure for test files
+		//instantiateTest();
+		
+		//How to call audio file clip player code
+		//takes file path as a string argument
+		Clip_Player.playfile("FP");
+		Clip_Player.playfile("FP");
+	}
+	
 
 }
+
