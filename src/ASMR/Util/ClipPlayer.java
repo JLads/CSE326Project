@@ -41,15 +41,16 @@ public class ClipPlayer {
 		}
 	}
 
-	// Test sound playing
-	
+	// Test audio playback
+	/*
 	public static void main(String[] args) {
 		try {
 			playSoundFile("killedkenny.wav");
 			Thread.sleep(4000);
 		}
-		catch (InterruptedException e) {
-			System.err.println("Oh my God, you killed my program!");
+		catch (InterruptedException ie) {
+			ie.printStackTrace();
 		}
 	}
+	*/
 }
