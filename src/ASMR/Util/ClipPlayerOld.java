@@ -10,25 +10,23 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
+//import javax.sound.sampled.LineListener;
 
 /**
  * This class plays back audio files
  * It can be called in succession with different files and will dynamically sleep
  * the running thread for the duration of the play back, after which the completed state flag
  * is reset.
- * @author Joseph
+ * @author Joseph, Steven
  *
  */
-public class Clip_Player {
+public class ClipPlayerOld {
 	static boolean complete = false;
 	
 	
 	public static void playfile(String filePath) {
-		//boolean complete = false;
 		try {
-			//File testfile = new File(filePath); //using passed in file path for file
-			File testfile = new File("killedkenny.wav"); //hard set testing file
+			File testfile = new File(filePath); //using passed in file path for file
 			AudioInputStream st; 
 			AudioFormat fmt;
 			DataLine.Info info;
@@ -47,18 +45,14 @@ public class Clip_Player {
 			clip = (Clip) AudioSystem.getLine(info);
 			
 			//data line listener to check for end of play back
-			clip.addLineListener(new LineListener() {
-				@Override
-				public void update(LineEvent event) {
-					if(event.getType() == LineEvent.Type.STOP) { //clip has ended
-						//System.out.println("Play Stop"); //debugging print
-						complete = true;
-						clip.close();
-					} else if (event.getType() == LineEvent.Type.START) { //clip has started
-						//System.out.println("Play Start"); //debugging print
-					}
+			clip.addLineListener((LineEvent event) -> {
+				if(event.getType() == LineEvent.Type.STOP) { //clip has ended
+					//System.out.println("Play Stop"); //debugging print
+					complete = true;
+					clip.close();
+				} else if (event.getType() == LineEvent.Type.START) { //clip has started
+					//System.out.println("Play Start"); //debugging print
 				}
-				
 			});
 			
 			//allocate system resources to clip for play back
@@ -71,6 +65,7 @@ public class Clip_Player {
 			}
 			
 		}
+
 		catch (Exception e) {
 			e.printStackTrace();
 		} finally {

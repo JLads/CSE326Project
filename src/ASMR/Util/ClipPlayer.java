@@ -1,83 +1,55 @@
 package ASMR.Util;
 
-
-
-import java.io.File;
-
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 
 /**
  * This class plays back audio files
  * It can be called in succession with different files and will dynamically sleep
  * the running thread for the duration of the play back, after which the completed state flag
  * is reset.
- * @author Joseph
+ * @author Steven
  *
  */
-public class Clip_Player {
-	static boolean complete = false;
+public class ClipPlayer {
 	
+	private static URL getSoundFileUrl(String soundFilePath)
+	throws MalformedURLException, InvalidPathException {
+		// Convert file path into a URL object
+		return Paths.get(soundFilePath).toUri().toURL();
+	}
 	
-	public static void playfile(String filePath) {
-		//boolean complete = false;
+	private static AudioClip loadSoundClip(String soundFilePath)
+	throws MalformedURLException, InvalidPathException {
+		// Obtain audio clip from file path
+		return Applet.newAudioClip(getSoundFileUrl(soundFilePath));
+	}
+
+	public static void playSoundFile(String soundFilePath) {
+		AudioClip soundClip;
+
 		try {
-			//File testfile = new File(filePath); //using passed in file path for file
-			File testfile = new File("killedkenny.wav"); //hard set testing file
-			AudioInputStream st; 
-			AudioFormat fmt;
-			DataLine.Info info;
-			Clip clip;
-		
-			//gets audio input stream from specified file
-			st = AudioSystem.getAudioInputStream(testfile);
-			
-			//gets the audio file format
-			fmt = st.getFormat();
-			
-			//sets data line format and buffer size
-			info = new DataLine.Info(Clip.class, fmt);
-			
-			//pre-loads the audio data line for play back
-			clip = (Clip) AudioSystem.getLine(info);
-			
-			//data line listener to check for end of play back
-			clip.addLineListener(new LineListener() {
-				@Override
-				public void update(LineEvent event) {
-					if(event.getType() == LineEvent.Type.STOP) { //clip has ended
-						//System.out.println("Play Stop"); //debugging print
-						complete = true;
-						clip.close();
-					} else if (event.getType() == LineEvent.Type.START) { //clip has started
-						//System.out.println("Play Start"); //debugging print
-					}
-				}
-				
-			});
-			
-			//allocate system resources to clip for play back
-			clip.open(st); 
-			
-			//start play back
-			clip.start();
-			while (complete == false) { //sleep thread until audio clip has ended
-				Thread.sleep(100);
-			}
-			
+			soundClip = loadSoundClip(soundFilePath);
+			soundClip.play();
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			//reset play back completion flag
-			complete = false;
+		catch (MalformedURLException | InvalidPathException e) {
+			throw new IllegalArgumentException("Unable to play" + soundFilePath);
 		}
-		//test print
-		//System.out.println("complete = " + complete);
+	}
+
+	// Test sound playing
+	
+	public static void main(String[] args) {
+		try {
+			playSoundFile("killedkenny.wav");
+			Thread.sleep(4000);
+		}
+		catch (InterruptedException e) {
+			System.err.println("Oh my God, you killed my program!");
+		}
 	}
 }
