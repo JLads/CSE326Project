@@ -43,8 +43,9 @@ public class ClipPlayer {
 	/**
 	 * Plays a sound file given its filepath.
 	 * @param soundFilePath The filepath of the sound file.
+	 * @throws IllegalArgumentException
 	 */
-	public static void playSoundFile(String soundFilePath) {
+	public static void playSoundFile(String soundFilePath) throws IllegalArgumentException {
 		AudioClip soundClip;
 
 		try {
