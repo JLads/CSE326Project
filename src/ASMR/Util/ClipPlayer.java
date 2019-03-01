@@ -8,27 +8,42 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
 /**
- * This class plays back audio files
- * It can be called in succession with different files and will dynamically sleep
- * the running thread for the duration of the play back, after which the completed state flag
- * is reset.
- * @author Steven
+ * This class plays back audio files. They may be played simultaneously. There is no volume control.
  *
+ * @author Steven
  */
 public class ClipPlayer {
 	
+	/**
+	 * Obtains the URL of a sound file's filepath.
+	 * @param soundFilePath The filepath of the sound file.
+	 * @return The java.net URL of the sound file.
+	 * @throws MalformedURLException
+	 * @throws InvalidPathException 
+	 */
 	private static URL getSoundFileUrl(String soundFilePath)
 	throws MalformedURLException, InvalidPathException {
 		// Convert file path into a URL object
 		return Paths.get(soundFilePath).toUri().toURL();
 	}
 	
+	/**
+	 * Generates an AudioClip object for a sound file.
+	 * @param soundFilePath The filepath of the sound file.
+	 * @return An AudioClip object for the sound file.
+	 * @throws MalformedURLException
+	 * @throws InvalidPathException 
+	 */
 	private static AudioClip loadSoundClip(String soundFilePath)
 	throws MalformedURLException, InvalidPathException {
 		// Obtain audio clip from file path
 		return Applet.newAudioClip(getSoundFileUrl(soundFilePath));
 	}
 
+	/**
+	 * Plays a sound file given its filepath.
+	 * @param soundFilePath The filepath of the sound file.
+	 */
 	public static void playSoundFile(String soundFilePath) {
 		AudioClip soundClip;
 
@@ -37,7 +52,7 @@ public class ClipPlayer {
 			soundClip.play();
 		}
 		catch (MalformedURLException | InvalidPathException e) {
-			throw new IllegalArgumentException("Unable to play" + soundFilePath);
+			throw new IllegalArgumentException("Sound file missing or corrupted:" + soundFilePath);
 		}
 	}
 
@@ -46,7 +61,7 @@ public class ClipPlayer {
 	public static void main(String[] args) {
 		try {
 			playSoundFile("killedkenny.wav");
-			Thread.sleep(4000);
+			Thread.sleep(1000);
 		}
 		catch (InterruptedException ie) {
 			ie.printStackTrace();
