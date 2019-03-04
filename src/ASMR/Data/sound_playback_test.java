@@ -1,6 +1,8 @@
 package ASMR.Data;
 import ASMR.Util.*;
+
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class sound_playback_test {
@@ -25,15 +27,17 @@ public class sound_playback_test {
 		
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
-		//working on class structure for test files
-		//instantiateTest();
 		
-		//How to call audio file clip player code
-		//takes file path as a string argument
-		Clip_Player.playfile("FP");
-		Clip_Player.playfile("FP");
+		ArrayList<String> practice = new ArrayList<String>();
+		practice.add("practice.csv");
+		practice.add("practice.csv");
+		practice.add("practice.csv");
+		
+		Test_Data_Interface trial = new Test_Data_Interface();
+		System.out.println(Test_Data_Interface.retrieve_tests(practice));
+		
+		Test_Data_Interface.play_sequence(0, 1);
 	}
 	
 

@@ -2,6 +2,7 @@ package ASMR.Data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -25,10 +26,8 @@ public class Test {
 	private String answer; //correct answer string from test.csv
 	private Sequence first; //first sequence in test pair
 	private Sequence second; //second sequence in test pair
+
 	
-	public Test(String fp) { //takes file path and populates the test object
-		
-	}
 	public Test(File file) { //takes file object and populates the test object
 		try {
 			Scanner sc = new Scanner(file);
@@ -45,14 +44,17 @@ public class Test {
 			//make two sequences from sequence lines
 			
 			sc.close();
-		} catch (FileNotFoundException e) {
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchElementException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		this.id = file.getName();
-		
-		
 	}
+	
 	
 	public String getId() {
 		return this.id;
@@ -65,12 +67,6 @@ public class Test {
 	}
 	public Sequence getSecond() {
 		return this.second;
-	}
-	public void setID() {
-		//TBD
-	}
-	public void setAnswer() {
-		//TBD
 	}
 
 
