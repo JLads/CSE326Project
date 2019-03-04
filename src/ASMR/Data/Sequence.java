@@ -20,6 +20,9 @@ public class Sequence {
 	public String GetClip(int index) {
 		return clips.get(index);
 	}
+	public ArrayList<String> get_all_clips(){
+		return this.clips;
+	}
 	public void printArray() {
 		int i;
 		for(i=0; i < clips.size(); i++) {
