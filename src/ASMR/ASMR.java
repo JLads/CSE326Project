@@ -28,6 +28,9 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 	
 	public static void main(String args[]) {new ASMR();}
 	
+	/**
+		//instantiate the data interfaces?
+	*/
 	private ASMR() {
 		Thread.setDefaultUncaughtExceptionHandler(this);
 
