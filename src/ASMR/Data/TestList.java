@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class TestList implements TestRetriever {
 
 	//The list of test objects
-	private ArrayList<Test> tests;
+	private static ArrayList<Test> tests;
 	
 	/**
 	 * Initializes the object list on instantiation
