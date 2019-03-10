@@ -14,6 +14,17 @@ public class Sequence {
 		clips = new ArrayList<String>();
 	}
 	
+	/**
+	 * Constructor that takes a comma separated string of file paths
+	 * @param fileList list of file paths to parse
+	 */
+	public Sequence(String fileList) {
+		clips = new ArrayList<String>();
+		for(String filePath : fileList.split(",")) {
+			clips.add(filePath);
+		}
+	}
+	
 	public void InsertClip(String fp) {
 		clips.add(fp); //add passed in file path to the sound clip list
 	}

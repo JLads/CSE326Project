@@ -2,6 +2,7 @@ package ASMR.Data;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -28,33 +29,25 @@ public class Test {
 	private Sequence second; //second sequence in test pair
 
 	
-	public Test(File file) { //takes file object and populates the test object
-		try {
-			Scanner sc = new Scanner(file);
-			this.first = new Sequence();
-			this.second = new Sequence();
-			for(String fp : sc.nextLine().split(",")) {
-				this.first.InsertClip(fp);
-			}
-			for(String fp : sc.nextLine().split(",")) {
-				this.second.InsertClip(fp);
-			}
-			this.answer = sc.nextLine();
-			//split into sequence lines and solution line
-			//make two sequences from sequence lines
-			
-			sc.close();
-		} catch(FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchElementException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-		this.id = file.getName();
+	public Test(String _seqA, String _seqB, String _answer) {
+		this.answer = _answer;
+		this.first = new Sequence(_seqA);
+		this.second = new Sequence(_seqB);
+		
+		System.out.print("a: ");
+		first.printArray();
+		System.out.print("b: ");
+		second.printArray();
+		System.out.println(answer);
+		System.out.println();
 	}
 	
+	public ArrayList<String> listFirst(){
+		return first.get_all_clips();
+	}
+	public ArrayList<String> listSecond(){
+		return second.get_all_clips();
+	}
 	
 	public String getId() {
 		return this.id;
