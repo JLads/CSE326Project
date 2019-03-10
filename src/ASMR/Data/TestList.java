@@ -47,23 +47,18 @@ public class TestList implements TestRetriever {
 
 	@Override
 	public ArrayList<String> getSequence(int testnum, int seqID) {
-		// TODO Auto-generated method stub
 		switch(seqID) {
 		case 1:
-			//return tests.get(testnum).getFirst();
 			return tests.get(testnum).listFirst();
 		case 2:
-			//return tests.get(testnum).getSecond();
 			return tests.get(testnum).listSecond();
 		default:
-			//return tests.get(testnum).getFirst();
 			return tests.get(testnum).listFirst();
 		}
 	}
 
 	@Override
 	public String getAnswer(int testnum) {
-		// TODO Auto-generated method stub
 		return tests.get(testnum).getAnswer();
 	}
 
