@@ -62,4 +62,9 @@ public class TestList implements TestRetriever {
 		return tests.get(testnum).getAnswer();
 	}
 
+	@Override
+	public int getListSize() {
+		return tests.size();
+	}
+
 }
