@@ -34,4 +34,11 @@ public interface TestRetriever {
 	 * @return correct response as a String
 	 */
 	public abstract String getAnswer(int testnum);
+	
+	
+	/**
+	 * Gets the size of the list of test objects
+	 * @return the size of the object list
+	 */
+	public abstract int getListSize();
 }
