@@ -1,9 +1,9 @@
 package ASMR.Util;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -39,7 +39,7 @@ public class ClipPlayer {
 	private static URL getSoundFileURL(String soundFilePath)
 	throws IOException, InvalidPathException {
 		// Convert file path into a URL object
-		return ClipPlayer.class.getResource(soundFilePath);
+		return Paths.get(soundFilePath).toUri().toURL();
 	}
 	
 	/**
@@ -83,20 +83,10 @@ public class ClipPlayer {
 		try {
 			Clip soundClip = loadSoundClip(soundFilePath);
 			soundClip.start();
+			Thread.sleep(soundClip.getMicrosecondLength() / 1000);
 		}
-		catch (LineUnavailableException lue) {
+		catch (LineUnavailableException | InterruptedException lue) {
 			System.err.println("Critical error: " + lue.getMessage());
-		}
-	}
-
-	// Test audio playback
-	public static void main(String[] args) {
-		try {
-			playSoundFile("/home/boogie/Documents/Spring2019/cse326/CSE326Project/killedkenny.wav");
-			Thread.sleep(1000);
-		}
-		catch (InterruptedException ie) {
-			ie.printStackTrace();
 		}
 	}
 }
