@@ -24,6 +24,7 @@ public class ClipPlayer {
 	 * @return The string representation of a file extension
 	 */
 	private static String getFileExtension(String filePath) {
+		
 		String fileExtension = filePath.split(".")[1];
 		return fileExtension.toUpperCase();
 	}
@@ -36,8 +37,8 @@ public class ClipPlayer {
 	 * @throws IOException
 	 * @throws InvalidPathException 
 	 */
-	private static URL getSoundFileURL(String soundFilePath)
-	throws IOException, InvalidPathException {
+	private static URL getSoundFileURL(String soundFilePath) throws IOException, InvalidPathException {
+
 		// Convert file path into a URL object
 		return Paths.get(soundFilePath).toUri().toURL();
 	}
@@ -47,13 +48,9 @@ public class ClipPlayer {
 	 * 
 	 * @param soundFilePath The file path of the sound file.
 	 * @return An AudioClip object for the sound file.
-	 * @throws InvalidPathException 
-	 * @throws IOException
 	 * @throws LineUnavailableException
-	 * @throws UnsupportedAudioFileException
 	 */
-	private static Clip loadSoundClip(String soundFilePath)
-	throws LineUnavailableException {
+	private static Clip loadSoundClip(String soundFilePath) throws LineUnavailableException {
 
 		try {
 			// Get audio input stream from file URL
@@ -82,6 +79,7 @@ public class ClipPlayer {
 
 		try {
 			Clip soundClip = loadSoundClip(soundFilePath);
+			// Play clip and sleep for its entire length
 			soundClip.start();
 			Thread.sleep(soundClip.getMicrosecondLength() / 1000);
 		}
