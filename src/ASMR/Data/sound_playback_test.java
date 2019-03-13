@@ -31,7 +31,7 @@ public class sound_playback_test {
 		//How to call audio file clip player code
 		//takes file path as a string argument
 		ClipPlayer.playSoundFile("FP");
-		ClipPlayer.playSoundFIle("FP");
+		ClipPlayer.playSoundFile("FP");
 	}
 	
 
