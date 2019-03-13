@@ -92,7 +92,7 @@ public class ClipPlayer {
 	// Test audio playback
 	public static void main(String[] args) {
 		try {
-			playSoundFile("killedkenny.wav");
+			playSoundFile("/home/boogie/Documents/Spring2019/cse326/CSE326Project/killedkenny.wav");
 			Thread.sleep(1000);
 		}
 		catch (InterruptedException ie) {
