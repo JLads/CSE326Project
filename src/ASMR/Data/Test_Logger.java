@@ -21,8 +21,10 @@ import java.util.Map.Entry;
  *@todo: Create interface for this class so UI does not directly access this.
  */
 
-public class TestLogger implements ResultLogger{
+public class Test_Logger implements ResultLogger{
 
+	
+	//Merge conflict.. I changed the name of this file from Test_Logger to TestLogger
 	
 	private static ArrayList<String> response = null;
 	private static ArrayList<String> correct = null;
@@ -34,7 +36,7 @@ public class TestLogger implements ResultLogger{
 	 * Initiates constructor
 	 * stores name of the test file being used
 	 */
-	public TestLogger(String _fname) {
+	public Test_Logger(String _fname) {
 		fname = _fname;
 		response = new ArrayList<String>();
 		correct = new ArrayList<String>();
