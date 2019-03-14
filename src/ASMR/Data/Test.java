@@ -1,10 +1,8 @@
 package ASMR.Data;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+
 
 /**
  * This class will hold two objects of Sequence which are test sequences

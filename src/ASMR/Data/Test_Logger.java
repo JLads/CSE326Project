@@ -2,12 +2,7 @@ package ASMR.Data;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Class for logging tests
@@ -50,8 +45,8 @@ public class Test_Logger implements ResultLogger{
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
-		
 	}
+	
 	@Override
 	public void Log_No(String ans) {
 		pairNum++;
@@ -91,9 +86,9 @@ public class Test_Logger implements ResultLogger{
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		
 	}
+
+
 	
 	/**
 	 * Testing function for debugging
