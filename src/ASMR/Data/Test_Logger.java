@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+
 /**
  * Class for logging tests
  * Before presenting tests, initiate a single object of this class
@@ -38,7 +39,6 @@ public class Test_Logger implements ResultLogger{
 		pairId = new ArrayList<Integer>();
 	}
 	
-
 	@Override
 	public void Log_Yes(String ans) {
 		pairNum++;
@@ -54,7 +54,6 @@ public class Test_Logger implements ResultLogger{
 		correct.add(ans);
 		pairId.add(pairNum);
 	}
-	
 	
 	@Override
 	public void Save_Results(String fpath) {
