@@ -13,4 +13,6 @@ public interface ResultLogger {
 	 * @param ans string containing correct response
 	 */
 	public abstract void Log_No(String ans);
+	
+	public abstract void Save_Results(String fpath);
 }

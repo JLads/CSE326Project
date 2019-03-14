@@ -58,6 +58,45 @@ public class TestLogger implements ResultLogger{
 		pairId.add(pairNum);
 	}
 	
+	
+	@Override
+	public void Save_Results(String fpath) {
+		/**
+		 * This function may be moved into utilities.
+		 * Until then, this writes out the results csv files
+		 */
+		
+		File out;
+		FileWriter writer;
+		
+		try{
+			out = new File(fpath);
+			if(!out.exists()) {
+				out.createNewFile();
+			}
+			writer = new FileWriter(out);
+			
+			writer.append(fname + System.getProperty("line.separator"));
+			writer.append("PairNo,Correct,Response" + System.getProperty("line.separator"));
+			
+			for(int i = 0; i < response.size(); i++) {
+				String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
+				writer.append(s);
+				writer.append(System.getProperty("line.separator")); //new line for file
+			}
+			writer.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+	}
+	
+	/**
+	 * Testing function for debugging
+	 * prints out the values in each array list
+	 */
 	public void printArray() {
 		System.out.println("Test file: " + fname);
 		for(int i = 0; i < pairId.size(); i++) {
@@ -68,52 +107,6 @@ public class TestLogger implements ResultLogger{
 		}
 	}
 	
-	
-	//Rework how to write to a csv file
-	/*
-	public void SaveResults(String fpath) {
-		/*
-		 * Get intended fpath
-		 * create new csv file
-		 * populate via hashmap.getkeys and getting values
-		 *
-		
-		//Creates a file 
-		File file = new File(fpath); 
-		FileWriter writer;
-		
-		try {
-			//Used to iterate through HashMap
-			Iterator<Entry<String, String>> it = results.entrySet().iterator();
-			Map.Entry<String, String> pair;
-			
-			writer = new FileWriter(file);
-			
-			//CSV file header
-			writer.append("\n");
-			
-			//Loops through HashMap until it's empty
-			writer.append("Test File Name, Correct Answer\n");
-			while(it.hasNext()) {
-				
-				pair = (Map.Entry<String, String>) it.next();
-				writer.append(pair.getKey() + ", ");
-				
-				if(pair.getValue() == true) {
-					//answer is correct
-					writer.append("1\n"); 
-				} else {
-					//answer is incorrect
-					writer.append("0\n");
-				}
-			}
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	*/
-
 	
 
 }

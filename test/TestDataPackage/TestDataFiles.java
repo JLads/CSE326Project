@@ -23,13 +23,16 @@ public class TestDataFiles {
 	}
 	
 	public static void test_ResultLogger() {
-		TestLogger RL = new TestLogger("dummyname.csv");
+		ResultLogger RL = new TestLogger("dummyname.csv");
 		RL.Log_No("no");
 		RL.Log_Yes("yes");
 		RL.Log_No("yes");
 		RL.Log_Yes("no");
-		RL.printArray();
+		//RL.printArray();
+		RL.Save_Results("Logs/testoutput.csv");
+		System.out.println("File saved");
 	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
