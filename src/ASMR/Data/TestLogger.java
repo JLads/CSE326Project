@@ -17,7 +17,7 @@ import java.util.ArrayList;
  *@todo: Create interface for this class so UI does not directly access this.
  */
 
-public class Test_Logger implements ResultLogger{
+public class TestLogger implements ResultLogger{
 
 	
 	//Merge conflict.. I changed the name of this file from Test_Logger to TestLogger
@@ -32,7 +32,7 @@ public class Test_Logger implements ResultLogger{
 	 * Initiates constructor
 	 * stores name of the test file being used
 	 */
-	public Test_Logger(String _fname) {
+	public TestLogger(String _fname) {
 		fname = _fname;
 		response = new ArrayList<String>();
 		correct = new ArrayList<String>();

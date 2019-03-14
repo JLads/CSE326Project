@@ -23,7 +23,7 @@ public class TestDataFiles {
 	}
 	
 	public static void test_ResultLogger() {
-		ResultLogger RL = new Test_Logger("dummyname.csv");
+		ResultLogger RL = new TestLogger("dummyname.csv");
 		RL.Log_No("no");
 		RL.Log_Yes("yes");
 		RL.Log_No("yes");
