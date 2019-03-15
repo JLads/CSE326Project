@@ -3,7 +3,7 @@ package ASMR.GUI;
 import ASMR.Data.TestRetriever;
 
 /**
- * A class for retrieving the filepath to a test file to load  
+ * A panel for retrieving the filepath to a test file to load  
  * @author nicholas
  *
  */
@@ -15,13 +15,14 @@ public class LoadTestFilePanel extends AbstractFileIOPanel{
 	 * default constructor
 	 */
 	public LoadTestFilePanel() {
-		this.panelLabel = "Enter the file path for a Test file.";
+		this.panelLabel = "Enter the file path for a Test file to load.";
 		this.buildPanel();
 	}
 
 	@Override
 	public void processFilepath(String fp) {
 		TestRetriever.proxyBuildList(fp);
+		//TODO connect to another panel
 		new WIPWindow();
 	}
 }

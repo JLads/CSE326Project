@@ -14,9 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- * a class for handling the various panels used to get and use a filepath
+ * an abstract class for handling the various panels used to get a filepath
  * @author nicholas
  *
  */
@@ -53,6 +54,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//file chooser
 		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILE", "csv");
+		chooser.setFileFilter(filter);
 		
 		//text area for file path
 		JTextArea text = new JTextArea(this.filePath);
