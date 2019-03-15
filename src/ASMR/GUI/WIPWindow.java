@@ -40,7 +40,7 @@ public class WIPWindow {
 		
 		//confurmation button
 		JButton button = new JButton("Return");
-		button.setFont(new Font("Return", Font.PLAIN, 20));
+		button.setFont(new Font("Aerial", Font.PLAIN, 20));
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {frame.dispose();}
