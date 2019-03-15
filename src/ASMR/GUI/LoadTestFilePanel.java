@@ -21,11 +21,7 @@ public class LoadTestFilePanel extends AbstractFileIOPanel{
 
 	@Override
 	public void processFilepath(String fp) {
-		/*
-		TestRetriever tr = null;
-		tr.BuildList(fp);
-		*/
-		System.out.println(fp);
+		TestRetriever.proxyBuildList(fp);
 		new WIPWindow();
 	}
 }

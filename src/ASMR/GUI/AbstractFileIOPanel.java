@@ -46,7 +46,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//label
 		JLabel label = new JLabel(this.panelLabel);
-		label.setFont(new Font("Aerial", Font.PLAIN, 40));
+		label.setFont(new Font("Aerial", Font.PLAIN, 30));
 		gbc.gridy = 0;
 		gbc.gridx = 0;
 		this.add(label, gbc);
@@ -56,6 +56,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//text area for file path
 		JTextArea text = new JTextArea(this.filePath);
+		text.setFont(new Font("Aerial", Font.PLAIN, 15));
 		text.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {updateText();}
@@ -90,10 +91,9 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		gbc.gridy = 1;
 		gbc.gridx = 1;
 		this.add(browse, gbc);
-
 		
 		//continue button
-		JButton button = new JButton("Return");
+		JButton button = new JButton("Continue");
 		button.setFont(new Font("Aerial", Font.PLAIN, 20));
 		button.addActionListener(new ActionListener() {
 			@Override

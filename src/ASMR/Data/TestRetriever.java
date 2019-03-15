@@ -11,6 +11,54 @@ import java.util.ArrayList;
  *
  */
 public interface TestRetriever {
+	
+	//---------------------------------------------------------------------------
+	//The following were additions made to make
+	//the interface usable by the gui
+	// - Nicholas Jones
+	
+	TestList tl = new TestList(); //an instance of the test list subclass
+	
+	/**
+	 * builds the list of test objects
+	 * @param fp path to test file
+	 * @return length of list
+	 */
+	public static int proxyBuildList(String fp) {
+		return tl.BuildList(fp);
+	}
+	
+	public static String proxyGetFilePath() {
+		return tl.getFilepath();
+	}
+	
+	/**
+	 * returns a sequence of audio files for a given test
+	 * @param testnum the test for which to retrieve a sequence of
+	 * @param seqID the sequence to be retrieved
+	 * @return the sequence of audio files to be played in a test
+	 */
+	public static ArrayList<String> proxyGetSequence(int testnum, int seqID){
+		return tl.getSequence(testnum, seqID);
+	}
+	
+	/**
+	 * returns the correct answer for a given test
+	 * @param testnum the test for which to retrieve that correct answer
+	 * @return string of yes or no
+	 */
+	public static String proxyGetAnswer(int testnum) {
+		return tl.getAnswer(testnum);
+	}
+	
+	/**
+	 * gets the size of the list of tests
+	 * @return the size of the list of tests
+	 */
+	public static int proxyGetListSize() {
+		return tl.getListSize();
+	}
+	//----------------------------------------------------------------------------
 
 	/**
 	 * Builds the list of test objects and reports the number of tests
