@@ -1,7 +1,7 @@
 package TestDataPackage;
 
 import ASMR.Data.*;
-import ASMR.Util.Clip_Player;
+import ASMR.Util.ClipPlayer;
 
 public class TestDataFiles {
 
@@ -18,7 +18,7 @@ public class TestDataFiles {
 		System.out.println("there are " + size + " tests queued.");
 		
 		for(String fp : Link.getSequence(2, 2)) {
-			Clip_Player.playfile(fp);
+			ClipPlayer.playSoundFile(fp);
 		}
 	}
 	
