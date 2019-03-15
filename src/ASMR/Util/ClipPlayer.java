@@ -44,10 +44,10 @@ public class ClipPlayer {
 	}
 	
 	/**
-	 * Generates an AudioClip object for a sound file.
+	 * Generates a Clip object for a sound file.
 	 * 
 	 * @param soundFilePath The file path of the sound file.
-	 * @return An AudioClip object for the sound file.
+	 * @return A Clip object for the sound file.
 	 * @throws LineUnavailableException
 	 */
 	private static Clip loadSoundClip(String soundFilePath) throws LineUnavailableException {
