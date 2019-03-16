@@ -10,6 +10,14 @@ public interface ResultLogger {
 	TestLogger tLog = new TestLogger(TestRetriever.proxyGetFilePath()); // instance of TestLogger subclass
 	
 	/**
+	 * sets the file name of the test file
+	 * @param fp
+	 */
+	public static void proxySetFName(String fp) {
+		tLog.setFName(fp);
+	}
+	
+	/**
 	 * records test result of yes
 	 * @param ans the correct answer
 	 */
@@ -27,7 +35,7 @@ public interface ResultLogger {
 	
 	/**
 	 * saves results out to file
-	 * @param fpath the filepath to save the results to
+	 * @param fpath the file path to save the results to
 	 */
 	public static void proxySaveResults(String fpath) {
 		tLog.Save_Results(fpath);

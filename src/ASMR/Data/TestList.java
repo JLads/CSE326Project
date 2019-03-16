@@ -19,8 +19,12 @@ public class TestList implements TestRetriever {
 	//--------------------------------------
 	//adding this here for ease of use
 	//- Nicholas Jones
-	private static String filepath = null;
+	private static String filepath = ""; //path to test file
 	
+	/**
+	 * returns the path of the test file
+	 * @return the path of the test file
+	 */
 	public String getFilepath() {
 		return filepath;
 	}

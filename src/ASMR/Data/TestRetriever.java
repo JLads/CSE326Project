@@ -25,9 +25,14 @@ public interface TestRetriever {
 	 * @return length of list
 	 */
 	public static int proxyBuildList(String fp) {
+		ResultLogger.proxySetFName(fp);
 		return tl.BuildList(fp);
 	}
 	
+	/**
+	 * gets the file path to test file
+	 * @return file path to test file
+	 */
 	public static String proxyGetFilePath() {
 		return tl.getFilepath();
 	}
