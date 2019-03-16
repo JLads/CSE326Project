@@ -1,4 +1,5 @@
 /bin/
-/nbproject
+/build/
+/nbproject/
 build.xml
 /Push instructions
