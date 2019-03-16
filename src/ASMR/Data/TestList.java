@@ -16,6 +16,20 @@ public class TestList implements TestRetriever {
 	//The list of test objects
 	private static ArrayList<Test> tests;
 	
+	//--------------------------------------
+	//adding this here for ease of use
+	//- Nicholas Jones
+	private static String filepath = ""; //path to test file
+	
+	/**
+	 * returns the path of the test file
+	 * @return the path of the test file
+	 */
+	public String getFilepath() {
+		return filepath;
+	}
+	//--------------------------------------
+	
 	/**
 	 * Initializes the object list on instantiation
 	 */
@@ -26,7 +40,13 @@ public class TestList implements TestRetriever {
 	@Override
 	public int BuildList(String fp) {
 		//Put calls to utility parser here
-		
+
+		//--------------------------------------
+		//this too
+		//- Nicholas Jones
+		filepath = fp;
+		//--------------------------------------
+
 		//MyPasing for debug purpose
 		try {
 			File tmp = new File(fp);

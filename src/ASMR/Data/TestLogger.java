@@ -28,6 +28,21 @@ public class TestLogger implements ResultLogger{
 	private static int pairNum = 0;
 	private static String fname;
 	
+	//--------------------------------------
+	//adding this here for ease of use
+	//- Nicholas Jones
+	
+	/**
+	 * set the value of the file name for the test file
+	 * @param filename file name of test file
+	 */
+	public void setFName(String filename) {
+		fname=filename;
+	}
+	
+	//--------------------------------------
+
+	
 	/**
 	 * Initiates constructor
 	 * stores name of the test file being used
