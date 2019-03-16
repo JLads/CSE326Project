@@ -22,7 +22,6 @@ public class LoadTestFilePanel extends AbstractFileIOPanel{
 	@Override
 	public void processFilepath(String fp) {
 		TestRetriever.proxyBuildList(fp);
-		//TODO connect to another panel
-		new WIPWindow();
+		AbstractPanel.getFrame().changePanel(new StartTestPanel());
 	}
 }

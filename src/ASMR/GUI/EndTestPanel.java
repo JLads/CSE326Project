@@ -53,8 +53,7 @@ public class EndTestPanel extends AbstractPanel {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO implement SaveResultsPanel
-				new WIPWindow();
+				AbstractPanel.getFrame().changePanel(new SaveResultsFilePanel());
 			}
 		});
 		gbc.gridx=0;

@@ -22,8 +22,7 @@ public class SaveResultsFilePanel extends AbstractFileIOPanel {
 	@Override
 	public void processFilepath(String fp) {
 		ResultLogger.proxySaveResults(fp);
-		//TODO connect to another panel
-		new WIPWindow();
+		AbstractPanel.getFrame().changePanel(new MainPanel());
 	}
 
 }
