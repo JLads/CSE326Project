@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import ASMR.Data.TestRetriever;
+import ASMR.Data.ResultLogger;
+import ASMR.Util.ClipPlayer;
+
 /**
  * A class that implements the panel that handles the testing of sequences
  * @author nicholas
@@ -22,19 +26,24 @@ public class RunTestPanel extends AbstractPanel {
 	private int numSeq;		//the number of sequences to test
 	private int finSeq = 0;	//the number of sequences that have been tested
 	
-	
+	/**
+	 * constructor
+	 */
 	public RunTestPanel() {
-		//TODO change this assignment to the number of sequences
-		this.numSeq = 5;
+		this.numSeq = TestRetriever.proxyGetListSize();
 		buildPanel();
 	}
 	
 	/**
 	 * records the result of a test
-	 * @param result
+	 * @param result boolean true for yes and false for no
 	 */
 	private void recordResult(Boolean result) {
-		//TODO record result
+		if(result) {
+			ResultLogger.proxyLogYes(TestRetriever.proxyGetAnswer(this.finSeq));
+		}else {
+			ResultLogger.proxyLogNo(TestRetriever.proxyGetAnswer(this.finSeq));
+		}
 	}
 	
 	/**
@@ -62,7 +71,12 @@ public class RunTestPanel extends AbstractPanel {
 		playButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO play audio for sequence
+				for(int i = 1; i <= 2; i++) {
+					for(String file : TestRetriever.proxyGetSequence(finSeq, i)) {
+						ClipPlayer.playSoundFile(file);
+					}
+				}
+				
 				playButton.setEnabled(false);
 				yesButton.setEnabled(true);
 				noButton.setEnabled(true);
