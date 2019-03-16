@@ -36,6 +36,7 @@ public class EndTestPanel extends AbstractPanel {
 		gbc.insets = new Insets(10,10,10,10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//message to user
 		JLabel label1 = new JLabel("Test Complete!");
 		label1.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
@@ -48,6 +49,7 @@ public class EndTestPanel extends AbstractPanel {
 		gbc.gridy=1;
 		this.add(label2, gbc);
 		
+		//continue button
 		JButton button = new JButton("Continue");
 		button.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button.addActionListener(new ActionListener() {

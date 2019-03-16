@@ -56,6 +56,7 @@ public class RunTestPanel extends AbstractPanel {
 		gbc.insets = new Insets(10,10,10,10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//initialize buttons
 		JButton playButton = new JButton("Play Audio");
 		JButton yesButton = new JButton("Yes");
 		JButton noButton = new JButton("No");
@@ -68,6 +69,7 @@ public class RunTestPanel extends AbstractPanel {
 		yesButton.setEnabled(false);
 		noButton.setEnabled(false);
 		
+		//set up play button functionality
 		playButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -83,6 +85,7 @@ public class RunTestPanel extends AbstractPanel {
 			}
 		});
 		
+		//set up yes button functionality
 		yesButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -97,6 +100,7 @@ public class RunTestPanel extends AbstractPanel {
 			}
 		});
 		
+		//set up no button
 		noButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -111,10 +115,12 @@ public class RunTestPanel extends AbstractPanel {
 			}
 		});
 		
-		JLabel label = new JLabel("Were the sequences similar?");
+		// set up question to user
+		JLabel label = new JLabel("Were the sequences the same?");
 		font = new Font("Aerial", Font.PLAIN, 20);
 		label.setFont(font);
 		
+		//set positions in panel
 		gbc.gridx=1;
 		gbc.gridy=0;
 		this.add(playButton, gbc);
