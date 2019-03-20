@@ -59,7 +59,7 @@ public class MainPanel extends AbstractPanel {
 		button1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AbstractPanel.getFrame().changePanel(new SelectConfigPanel());
+				AbstractPanel.getFrame().changePanel(new LoadTestFilePanel());
 			}
 		});
 		gbc.gridy = 1;

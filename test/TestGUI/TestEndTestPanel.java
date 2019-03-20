@@ -10,24 +10,24 @@ import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
 import ASMR.GUI.AbstractPanel;
+import ASMR.GUI.EndTestPanel;
 import ASMR.GUI.MainFrame;
-import ASMR.GUI.SelectConfigPanel;
 
 /**
- * a class for testing the selectconfigpanel
+ * A class that tests the post-test panel EndTestPanel
  * @author nicholas
  *
  */
-public class TestSelectConfigPanel {
-	
+public class TestEndTestPanel {
+
 	private static int widthShrink = 1000;
 	private static int heightShrink = 500;
 	
 	public static void main(String args[]) {
-		new TestSelectConfigPanel();
+		new TestEndTestPanel();
 	}
-
-	private TestSelectConfigPanel() {
+	
+	private TestEndTestPanel() {
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		
 		try {
@@ -37,7 +37,7 @@ public class TestSelectConfigPanel {
 				public void run() {
 					MainFrame frame = new MainFrame("Test");
 					AbstractPanel.setFrame(frame);
-					frame.changePanel(new SelectConfigPanel());
+					frame.changePanel(new EndTestPanel());
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
