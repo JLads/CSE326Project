@@ -28,14 +28,14 @@ public class ErrorWindow {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);		
 		
-		//WIP message
+		//Error message
 		JLabel label = new JLabel();
 		label.setText(err);
 		label.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridy = 0;
 		panel.add(label, gbc);
 		
-		//confurmation button
+		//confirmation button
 		JButton button = new JButton("Return");
 		button.setFont(new Font("Aerial", Font.PLAIN, 20));
 		button.addActionListener(new ActionListener() {

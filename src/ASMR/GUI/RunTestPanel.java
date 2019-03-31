@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -76,6 +77,13 @@ public class RunTestPanel extends AbstractPanel {
 				for(int i = 1; i <= 2; i++) {
 					for(String file : TestRetriever.proxyGetSequence(finSeq, i)) {
 						ClipPlayer.playSoundFile(file);
+					}
+					if(i!=2) {
+						try {
+							TimeUnit.SECONDS.sleep(1);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
 					}
 				}
 				

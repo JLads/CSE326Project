@@ -43,7 +43,7 @@ public class EndTestPanel extends AbstractPanel {
 		gbc.gridy=0;
 		this.add(label1, gbc);
 		
-		JLabel label2 = new JLabel("Please inform the individual running the test.");
+		JLabel label2 = new JLabel("Please inform the test administrator.");
 		label2.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=1;

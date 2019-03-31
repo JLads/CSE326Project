@@ -38,7 +38,7 @@ public class WIPWindow {
 		gbc.gridy = 0;
 		panel.add(label, gbc);
 		
-		//confurmation button
+		//confirmation button
 		JButton button = new JButton("Return");
 		button.setFont(new Font("Aerial", Font.PLAIN, 20));
 		button.addActionListener(new ActionListener() {
