@@ -36,6 +36,24 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	public abstract void processFilepath(String fp);
 	
 	/**
+	 * a class for checking the a file is legitimate, adds extension if needed
+	 * @param f file to check
+	 * @return path of f or null if f does not exist
+	 */
+	private String checkFilePath(String fp) {
+		String[] parts = fp.split(".");
+		if(!parts[parts.length-1].equals("csv")) {
+			fp=fp+".csv";
+		}
+		if((this instanceof LoadTestFilePanel)||(this instanceof LoadResultsFilePanel)) {
+			if(!(new File(fp)).exists()) {
+				return null;
+			}
+		}
+		return fp;
+	}
+	
+	/**
 	 * builds the contents of a panel
 	 */
 	@Override
@@ -54,6 +72,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//file chooser
 		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILE", "csv");
 		chooser.setFileFilter(filter);
 		
