@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -36,18 +37,30 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	public abstract void processFilepath(String fp);
 	
 	/**
-	 * a class for checking the a file is legitimate, adds extension if needed
+	 * a class for checking that a file path meets requirements
 	 * @param f file to check
-	 * @return path of f or null if f does not exist
+	 * @return path of f or null if error with f
 	 */
 	private String checkFilePath(String fp) {
-		String[] parts = fp.split(".");
-		if(!parts[parts.length-1].equals("csv")) {
-			fp=fp+".csv";
-		}
+		//most of this is here due to the ability of a user to manually input a path rather than use the file browser
 		if((this instanceof LoadTestFilePanel)||(this instanceof LoadResultsFilePanel)) {
-			if(!(new File(fp)).exists()) {
+			File f = new File(fp);
+			if(!f.isFile()) {
+				new ErrorWindow("Given path is not a file: "+fp);
 				return null;
+			}
+			if(!f.exists()) {
+				new ErrorWindow("File does not exist: "+fp);
+				return null;
+			}
+			if(!fp.contains(".csv")) {
+				new ErrorWindow("File must be a CSV: "+fp);
+				return null;
+			}
+		}else {
+			if(!fp.contains(".csv")) {
+				System.out.println("here");
+				fp=fp+".csv";
 			}
 		}
 		return fp;
@@ -88,7 +101,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 			public void keyReleased(KeyEvent e) {updateText();}
 			
 			public void updateText() {
-				filePath = text.getText();
+				filePath = text.getText().trim();
+				text.setText(filePath);
 			}
 		});
 		
@@ -120,7 +134,10 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				processFilepath(filePath);
+				String fp = checkFilePath(filePath);
+				if(fp!=null) {
+					processFilepath(fp);
+				}
 			}
 		});
 		gbc.gridy = 2;
