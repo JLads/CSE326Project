@@ -36,7 +36,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	public abstract void processFilepath(String fp);
 	
 	/**
-	 * a class for checking that a file path meets requirements
+	 * a method for checking that a file path meets requirements
 	 * @param f file to check
 	 * @return path of f or null if error with f
 	 */

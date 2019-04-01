@@ -80,7 +80,7 @@ public class RunTestPanel extends AbstractPanel {
 					}
 					if(i!=2) {
 						try {
-							TimeUnit.SECONDS.sleep(1);
+							TimeUnit.SECONDS.sleep(2);
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
 						}
