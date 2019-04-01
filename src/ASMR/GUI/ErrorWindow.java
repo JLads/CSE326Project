@@ -14,26 +14,23 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * A class that generates a window that indicates a feature is work in progress
+ * class for displaying error messages to the user
  * @author nicholas
  *
  */
-public class WIPWindow {
+public class ErrorWindow {
 
-	/**
-	 * default constructor
-	 */
-	public WIPWindow() {
-		JFrame frame = new JFrame("Work In Progress");
+	public ErrorWindow(String err) {
+		JFrame frame = new JFrame("Error");
 		JPanel panel = new JPanel();
 		
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);		
 		
-		//WIP message
+		//Error message
 		JLabel label = new JLabel();
-		label.setText("This feature is currently unavailable...");
+		label.setText(err);
 		label.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridy = 0;
 		panel.add(label, gbc);

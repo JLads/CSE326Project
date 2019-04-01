@@ -36,6 +36,36 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	public abstract void processFilepath(String fp);
 	
 	/**
+	 * a method for checking that a file path meets requirements
+	 * @param f file to check
+	 * @return path of f or null if error with f
+	 */
+	private String checkFilePath(String fp) {
+		//most of this is here due to the ability of a user to manually input a path rather than use the file browser
+		if((this instanceof LoadTestFilePanel)||(this instanceof LoadResultsFilePanel)) {
+			File f = new File(fp);
+			if(!f.isFile()) {
+				new ErrorWindow("Given path is not a file: "+fp);
+				return null;
+			}
+			if(!f.exists()) {
+				new ErrorWindow("File does not exist: "+fp);
+				return null;
+			}
+			if(!fp.contains(".csv")) {
+				new ErrorWindow("File must be a CSV: "+fp);
+				return null;
+			}
+		}else {
+			if(!fp.contains(".csv")) {
+				System.out.println("here");
+				fp=fp+".csv";
+			}
+		}
+		return fp;
+	}
+	
+	/**
 	 * builds the contents of a panel
 	 */
 	@Override
@@ -54,6 +84,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//file chooser
 		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILE", "csv");
 		chooser.setFileFilter(filter);
 		
@@ -69,7 +100,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 			public void keyReleased(KeyEvent e) {updateText();}
 			
 			public void updateText() {
-				filePath = text.getText();
+				filePath = text.getText().trim();
+				text.setText(filePath);
 			}
 		});
 		
@@ -101,7 +133,10 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				processFilepath(filePath);
+				String fp = checkFilePath(filePath);
+				if(fp!=null) {
+					processFilepath(fp);
+				}
 			}
 		});
 		gbc.gridy = 2;

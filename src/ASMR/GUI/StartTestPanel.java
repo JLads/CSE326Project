@@ -43,19 +43,19 @@ public class StartTestPanel extends AbstractPanel{
 		gbc.gridy=0;
 		this.add(label1, gbc);
 		
-		JLabel label2 = new JLabel("Press the 'Play Audio' button to play two sequences of audio clips.");
+		JLabel label2 = new JLabel("Press the 'Play Audio' button to play two sequences of audio clips, seperated by a second of silence.");
 		label2.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=1;
 		this.add(label2, gbc);
 		
-		JLabel label3 = new JLabel("Press the 'Yes' or 'No' button if you believe the sequences are similar.");
+		JLabel label3 = new JLabel("Press the 'Yes' or 'No' button if you believe the sequences are the same.");
 		label3.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=2;
 		this.add(label3, gbc);
 		
-		JLabel label4 = new JLabel("Press the button below to start the test.");
+		JLabel label4 = new JLabel("When you are ready, press the button below to start the test.");
 		label4.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
 		gbc.gridy=3;

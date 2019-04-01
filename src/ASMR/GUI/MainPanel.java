@@ -66,7 +66,7 @@ public class MainPanel extends AbstractPanel {
 		this.add(button1, gbc);
 		
 		//button for creating sequences
-		JButton button2 = new JButton("Create Sequence");
+		JButton button2 = new JButton("Create Test File");
 		button2.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button2.addActionListener(new ActionListener() {
 			@Override
@@ -79,7 +79,7 @@ public class MainPanel extends AbstractPanel {
 		this.add(button2, gbc);
 		
 		//button for analyzing result data
-		JButton button3 = new JButton("Analyze Results");
+		JButton button3 = new JButton("Analyze Results File");
 		button3.setFont(new Font("Aerial", Font.PLAIN, 40));
 		button3.addActionListener(new ActionListener() {
 			@Override
