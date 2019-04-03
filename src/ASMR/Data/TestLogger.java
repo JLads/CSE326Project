@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import ASMR.Util.CsvWriter;
+
 
 /**
  * Class for logging tests
@@ -77,29 +79,16 @@ public class TestLogger implements ResultLogger{
 		 * Until then, this writes out the results csv files
 		 */
 		
-		File out;
-		FileWriter writer;
+		ArrayList<String> lines = new ArrayList<String>();
 		
-		try{
-			out = new File(fpath);
-			if(!out.exists()) {
-				out.createNewFile();
-			}
-			writer = new FileWriter(out);
-			
-			writer.append(fname + System.getProperty("line.separator"));
-			writer.append("PairNo,Correct,Response" + System.getProperty("line.separator"));
-			
-			for(int i = 0; i < response.size(); i++) {
-				String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
-				writer.append(s);
-				writer.append(System.getProperty("line.separator")); //new line for file
-			}
-			writer.close();
+		lines.add("Test#,Correct,Subject");
+		
+		for(int i = 0; i < response.size(); i++) {
+			String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
+			lines.add(s);
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		CsvWriter.writeFile(lines, fpath);
 	}
 
 

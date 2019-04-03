@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import ASMR.Util.CsvReader;
+
 
 /**
  * This class implements the functions of the retriever interface.
@@ -47,21 +49,13 @@ public class TestList implements TestRetriever {
 		filepath = fp;
 		//--------------------------------------
 
-		//MyPasing for debug purpose
-		try {
-			File tmp = new File(fp);
-			Scanner sc = new Scanner(tmp);
-			while(sc.hasNextLine()) {
-				tests.add(new Test(sc.nextLine(), sc.nextLine(), sc.nextLine()));
-				if(sc.hasNextLine()) {
-					sc.nextLine();
-				}
-			}
-			sc.close();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
+		
+		ArrayList<String> lines = CsvReader.readFile(fp);
+		
+		for(int i = 0; i < lines.size(); i+=4) {
+			tests.add(new Test(lines.get(i), lines.get(i+1), lines.get(i+2)));
 		}
+	
 		return tests.size();
 	}
 
