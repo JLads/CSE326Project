@@ -5,9 +5,22 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles CSV file IO
+ * Read and Write Csv files by lines
+ * 
+ * @author Joseph Ladino
+ *
+ */
 public class CSVIO {
+	/**
+	 * Reads a file and returns lines stored in an array list
+	 * @param filepath path to file being read
+	 * @return array list of strings containing file lines
+	 */
 	public static ArrayList<String> readFile(String filepath){	
 
+		//store lines of a file
  		ArrayList<String> lines = new ArrayList<String>();	
 		File file = null;	
 		Scanner sc = null;	
@@ -30,6 +43,11 @@ public class CSVIO {
 
  	}
 	
+	/**
+	 * Takes an array list of lines and writes out a csv file
+	 * @param lines array list of lines to be written out
+	 * @param filepath path to where file is written
+	 */
 	public static void writeFile(ArrayList<String> lines, String filepath) {	
 		File file;	
 		FileWriter writer;	
@@ -51,6 +69,7 @@ public class CSVIO {
 				writer.append(System.getProperty("line.separator"));	
 			}	
 
+ 			//close the writer
  			writer.close();	
 		} catch (Exception e) {	
 			e.printStackTrace();	
