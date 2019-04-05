@@ -17,13 +17,17 @@ public class CsvWriter {
 		FileWriter writer;	
 
  		try {	
+ 			//open file
 			file = new File(filepath);	
 			if(!file.exists()) {	
+				//create file if it doesn't exist
 				file.createNewFile();	
 			}	
 
+			//create write for the file
  			writer = new FileWriter(file);	
 
+ 			//write out lines from arraylist passed in
  			for(String line : lines) {	
 				writer.append(line);	
 				writer.append(System.getProperty("line.separator"));	

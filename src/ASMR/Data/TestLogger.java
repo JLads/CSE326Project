@@ -81,13 +81,18 @@ public class TestLogger implements ResultLogger{
 		
 		ArrayList<String> lines = new ArrayList<String>();
 		
+		//add associated fname
+		lines.add(fname);
+		//add the line header
 		lines.add("Test#,Correct,Subject");
 		
+		//add the data (pair id, correct answer, user response)
 		for(int i = 0; i < response.size(); i++) {
 			String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
 			lines.add(s);
 		}
 		
+		//send array list of lines to the file writer with the intended write path
 		CsvWriter.writeFile(lines, fpath);
 	}
 

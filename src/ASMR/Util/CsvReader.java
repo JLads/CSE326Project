@@ -18,8 +18,13 @@ public class CsvReader {
 		Scanner sc = null;	
 
  		try {	
+ 			//open file path
 			file = new File(filepath);	
+			
+			//get scanner
 			sc = new Scanner(file);	
+			
+			//add each line to the array list of lines
 			while(sc.hasNextLine()) {	
 				lines.add(sc.nextLine());	
 			}	
