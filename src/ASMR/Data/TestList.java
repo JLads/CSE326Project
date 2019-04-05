@@ -1,10 +1,7 @@
 package ASMR.Data;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import ASMR.Util.CsvReader;
+import ASMR.Util.CSVIO;
 
 
 /**
@@ -50,7 +47,7 @@ public class TestList implements TestRetriever {
 		//--------------------------------------
 
 		
-		ArrayList<String> lines = CsvReader.readFile(fp);
+		ArrayList<String> lines = CSVIO.readFile(fp);
 		
 		for(int i = 0; i < lines.size(); i+=4) {
 			tests.add(new Test(lines.get(i), lines.get(i+1), lines.get(i+2)));

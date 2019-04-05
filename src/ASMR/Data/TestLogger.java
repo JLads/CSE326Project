@@ -1,10 +1,9 @@
 package ASMR.Data;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 
-import ASMR.Util.CsvWriter;
+import ASMR.Util.CSVIO;
+
 
 
 /**
@@ -93,7 +92,7 @@ public class TestLogger implements ResultLogger{
 		}
 		
 		//send array list of lines to the file writer with the intended write path
-		CsvWriter.writeFile(lines, fpath);
+		CSVIO.writeFile(lines, fpath);
 	}
 
 
