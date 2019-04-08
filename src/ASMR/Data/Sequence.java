@@ -9,7 +9,11 @@ import java.util.ArrayList;
  */
 public class Sequence {
 
-	private ArrayList<String> clips; //array list of file paths for each sound clip
+	private ArrayList<String> clips;	//array list of file paths for each sound clip
+	
+	/**
+	 * default constructor, initializes with empty list of file paths
+	 */
 	public Sequence() {
 		clips = new ArrayList<String>();
 	}
@@ -25,15 +29,34 @@ public class Sequence {
 		}
 	}
 	
+	/**
+	 * adds a new file path to the list of file paths
+	 * @param fp the new file path
+	 */
 	public void InsertClip(String fp) {
-		clips.add(fp); //add passed in file path to the sound clip list
+		clips.add(fp);
 	}
+	
+	/**
+	 * gets a file path at a given index in the list
+	 * @param index the index of the list to retrieve from
+	 * @return a string file path for an audio file
+	 */
 	public String GetClip(int index) {
 		return clips.get(index);
 	}
+	
+	/**
+	 * returns the list of file paths
+	 * @return the list of file paths
+	 */
 	public ArrayList<String> get_all_clips(){
 		return this.clips;
 	}
+	
+	/**
+	 * prints the contents of the list
+	 */
 	public void printArray() {
 		int i;
 		for(i=0; i < clips.size(); i++) {
@@ -42,5 +65,4 @@ public class Sequence {
 		}
 		System.out.println();
 	}
-	
 }

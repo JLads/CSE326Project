@@ -1,10 +1,7 @@
 package ASMR.Data;
 
 import java.util.ArrayList;
-
 import ASMR.Util.CSVIO;
-
-
 
 /**
  * Class for logging tests
@@ -15,34 +12,14 @@ import ASMR.Util.CSVIO;
  * @author Joseph Ladino
  * @author Ty Darnell
  *
- *@todo: Create interface for this class so UI does not directly access this.
  */
-
-public class TestLogger implements ResultLogger{
-
+public class TestLogger{
 	
-	//Merge conflict.. I changed the name of this file from Test_Logger to TestLogger
-	
-	private static ArrayList<String> response = null;
-	private static ArrayList<String> correct = null;
-	private static ArrayList<Integer> pairId = null;
-	private static int pairNum = 0;
-	private static String fname;
-	
-	//--------------------------------------
-	//adding this here for ease of use
-	//- Nicholas Jones
-	
-	/**
-	 * set the value of the file name for the test file
-	 * @param filename file name of test file
-	 */
-	public void setFName(String filename) {
-		fname=filename;
-	}
-	
-	//--------------------------------------
-
+	private static ArrayList<String> response = null;	//list of user responses
+	private static ArrayList<String> correct = null;	//list of correct answers
+	private static ArrayList<Integer> pairId = null;	//list of test numbers
+	private static int pairNum = 0;						//current test number
+	private static String fname;						//test file path
 	
 	/**
 	 * Initiates constructor
@@ -55,47 +32,53 @@ public class TestLogger implements ResultLogger{
 		pairId = new ArrayList<Integer>();
 	}
 	
-	@Override
-	public void Log_Yes(String ans) {
+	/**
+	 * set the value of the file name for the test file
+	 * @param filename file name of test file
+	 */
+	public void setFName(String filename) {
+		fname=filename;
+	}
+	
+	/**
+	 * record a test subject responding "yes"
+	 * @param ans string containing correct response
+	 */
+	public void logYes(String ans) {
 		pairNum++;
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
 	}
 	
-	@Override
-	public void Log_No(String ans) {
+	/**
+	 * record a test subject responding "no"
+	 * @param ans string containing correct response
+	 */
+	public void logNo(String ans) {
 		pairNum++;
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
 	}
 	
-	@Override
-	public void Save_Results(String fpath) {
-		/**
-		 * This function may be moved into utilities.
-		 * Until then, this writes out the results csv files
-		 */
-		
+	/**
+	 * save the recorded results to a results file
+	 * @param fpath file path to save results to
+	 */
+	public void saveResults(String fpath) {
 		ArrayList<String> lines = new ArrayList<String>();
 		
-		//add associated fname
 		lines.add(fname);
-		//add the line header
 		lines.add("Test#,Correct,Subject");
 		
-		//add the data (pair id, correct answer, user response)
 		for(int i = 0; i < response.size(); i++) {
 			String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
 			lines.add(s);
 		}
 		
-		//send array list of lines to the file writer with the intended write path
 		CSVIO.writeFile(lines, fpath);
 	}
-
-
 	
 	/**
 	 * Testing function for debugging
@@ -110,7 +93,4 @@ public class TestLogger implements ResultLogger{
 			System.out.println(msg);
 		}
 	}
-	
-	
-
 }
