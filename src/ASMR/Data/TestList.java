@@ -3,31 +3,17 @@ package ASMR.Data;
 import java.util.ArrayList;
 import ASMR.Util.CSVIO;
 
-
 /**
  * This class implements the functions of the retriever interface.
  * It also serves as a location to store the actual list of test objects
  * @author Joseph
  *
  */
-public class TestList implements TestRetriever {
+public class TestList {
 
-	//The list of test objects
-	private static ArrayList<Test> tests;
+	private static ArrayList<Test> tests;	//The list of test objects
 	
-	//--------------------------------------
-	//adding this here for ease of use
-	//- Nicholas Jones
-	private static String filepath = ""; //path to test file
-	
-	/**
-	 * returns the path of the test file
-	 * @return the path of the test file
-	 */
-	public String getFilepath() {
-		return filepath;
-	}
-	//--------------------------------------
+	private static String filepath = "";	//path to test file
 	
 	/**
 	 * Initializes the object list on instantiation
@@ -36,16 +22,15 @@ public class TestList implements TestRetriever {
 		tests = new ArrayList<Test>();
 	}
 	
-	@Override
+	/**
+	 * builds the list of tests from the contents of the test file
+	 * @param fp the path to the test file
+	 * @return the size of the list of tests
+	 */
 	public int BuildList(String fp) {
 		//Put calls to utility parser here
 
-		//--------------------------------------
-		//this too
-		//- Nicholas Jones
 		filepath = fp;
-		//--------------------------------------
-
 		
 		ArrayList<String> lines = CSVIO.readFile(fp);
 		
@@ -55,8 +40,21 @@ public class TestList implements TestRetriever {
 	
 		return tests.size();
 	}
+	
+	/**
+	 * returns the path of the test file
+	 * @return the path of the test file
+	 */
+	public String getFilepath() {
+		return filepath;
+	}
 
-	@Override
+	/**
+	 * returns a sequence from a test in the list of tests
+	 * @param testnum the test in the list of tests
+	 * @param seqID the sequence in the test to return
+	 * @return a sequence from a test
+	 */
 	public ArrayList<String> getSequence(int testnum, int seqID) {
 		switch(seqID) {
 		case 1:
@@ -68,14 +66,20 @@ public class TestList implements TestRetriever {
 		}
 	}
 
-	@Override
+	/**
+	 * returns the correct answer for a test
+	 * @param testnum the number of the test in the list of tests
+	 * @return the correct answer for the test
+	 */
 	public String getAnswer(int testnum) {
 		return tests.get(testnum).getAnswer();
 	}
 
-	@Override
+	/**
+	 * returns the size of the list of tests
+	 * @return the size of the list of tests
+	 */
 	public int getListSize() {
 		return tests.size();
 	}
-
 }

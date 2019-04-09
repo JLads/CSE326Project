@@ -1,43 +1,44 @@
 package TestDataPackage;
 
-import ASMR.Data.*;
+import ASMR.Data.ResultLogger;
+import ASMR.Data.TestRetriever;
 import ASMR.Util.ClipPlayer;
 
+/**
+ * A test file for testing the TestRetrieval and TestLogger subsystem
+ * @author nicholas
+ *
+ */
 public class TestDataFiles {
-
 	
 	public static void test_testRetriever(){
-		TestRetriever Link = new TestList();
 		
 		/*
 		 * We need to automatically append the directory path to 
 		 * the file path when referencing the .wav and .csv files 
 		 */
-		int size = Link.BuildList("TestFiles/practice.csv");
+		int size = TestRetriever.proxyBuildList("TestFiles/practice.csv");
 		
 		System.out.println("there are " + size + " tests queued.");
 		
-		for(String fp : Link.getSequence(2, 2)) {
+		for(String fp : TestRetriever.proxyGetSequence(2, 2)) {
 			ClipPlayer.playSoundFile(fp);
 		}
 	}
 	
 	public static void test_ResultLogger() {
-		ResultLogger RL = new TestLogger("dummyname.csv");
-		RL.Log_No("no");
-		RL.Log_Yes("yes");
-		RL.Log_No("yes");
-		RL.Log_Yes("no");
-		//RL.printArray();
-		RL.Save_Results("Logs/testoutput.csv");
+		ResultLogger.proxySetFName("dummyname.csv");
+		ResultLogger.proxyLogNo("no");
+		ResultLogger.proxyLogYes("yes");
+		ResultLogger.proxyLogYes("yes");
+		ResultLogger.proxyLogNo("no");
+
+		ResultLogger.proxySaveResults("Logs/testoutput.csv");
 		System.out.println("File saved");
 	}
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		test_ResultLogger();
-
 	}
-
 }
