@@ -15,11 +15,13 @@ import ASMR.Util.CSVIO;
  */
 public class TestLogger{
 	
-	private static ArrayList<String> response = null;	//list of user responses
-	private static ArrayList<String> correct = null;	//list of correct answers
-	private static ArrayList<Integer> pairId = null;	//list of test numbers
-	private static int pairNum = 0;						//current test number
-	private static String fname;						//test file path
+	private static ArrayList<String> response = null;		//list of user responses
+	private static ArrayList<String> correct = null;		//list of correct answers
+	private static ArrayList<Integer> pairId = null;		//list of test numbers
+	private static ArrayList<Integer> pointTotal = null;	//list of total score after each test
+	private static int pairNum = 0;							//current test number
+	private static int points = 0;							//test subject score
+	private static String fname;							//test file path
 	
 	/**
 	 * Initiates constructor
@@ -39,6 +41,8 @@ public class TestLogger{
 		response = new ArrayList<String>();
 		correct = new ArrayList<String>();
 		pairId = new ArrayList<Integer>();
+		pointTotal = new ArrayList<Integer>();
+		points = 0;
 	}
 	
 	/**
@@ -59,6 +63,8 @@ public class TestLogger{
 	
 	/**
 	 * record a test subject responding "yes"
+	 * If subject response is correct add 10 points
+	 * If subject response is wrong, subtract 5 points
 	 * @param ans string containing correct response
 	 */
 	public void logYes(String ans) {
@@ -66,10 +72,18 @@ public class TestLogger{
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
+		if(ans.contentEquals("yes")) {
+			points += 10; 
+		} else {
+			points -= 5;
+		}
+		pointTotal.add(points);
 	}
 	
 	/**
 	 * record a test subject responding "no"
+	 * If subject response is correct add 10 points
+	 * If subject response is wrong, subtract 5 points
 	 * @param ans string containing correct response
 	 */
 	public void logNo(String ans) {
@@ -77,6 +91,20 @@ public class TestLogger{
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
+		if(ans.contentEquals("no")) {
+			points += 10; 
+		} else {
+			points -= 5;
+		}
+		pointTotal.add(points);
+	}
+	
+	/**
+	 * gets points for subject
+	 * @return points earned as an int
+	 */
+	public int getPoints() {
+		return points;
 	}
 	
 	/**
@@ -90,7 +118,7 @@ public class TestLogger{
 		lines.add("Test#,Correct,Subject");
 		
 		for(int i = 0; i < response.size(); i++) {
-			String s = String.format("%d,%s,%s", pairId.get(i), correct.get(i), response.get(i));
+			String s = String.format("%d,%s,%s,%d", pairId.get(i), correct.get(i), response.get(i), pointTotal.get(i));
 			lines.add(s);
 		}
 		

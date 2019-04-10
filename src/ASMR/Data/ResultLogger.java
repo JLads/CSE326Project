@@ -17,6 +17,9 @@ public interface ResultLogger {
 		tLog.setFName(fp);
 	}
 	
+	/**
+	 * Clears static ivars
+	 */
 	public static void proxyClear() {
 		tLog.Clear();
 	}
@@ -35,6 +38,14 @@ public interface ResultLogger {
 	 */
 	public static void proxyLogNo(String ans) {
 		tLog.logNo(ans);
+	}
+	
+	/**
+	 * Get current points for subject
+	 * @return points earned as an int
+	 */
+	public static int proxyGetPoints() {
+		return tLog.getPoints();
 	}
 	
 	/**
