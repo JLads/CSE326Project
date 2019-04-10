@@ -1,6 +1,7 @@
 package ASMR.GUI;
 
 import ASMR.Data.ResultLogger;
+import ASMR.Data.TestRetriever;
 
 /**
  * a panel for saving results out to file
@@ -22,6 +23,10 @@ public class SaveResultsFilePanel extends AbstractFileIOPanel {
 	@Override
 	public void processFilepath(String fp) {
 		ResultLogger.proxySaveResults(fp);
+		ResultLogger.proxyClear();
+		TestRetriever.proxyClear();
+		
+		
 		AbstractPanel.getFrame().changePanel(new MainPanel());
 	}
 

@@ -17,6 +17,10 @@ public interface ResultLogger {
 		tLog.setFName(fp);
 	}
 	
+	public static void proxyClear() {
+		tLog.Clear();
+	}
+	
 	/**
 	 * records test result of yes
 	 * @param ans the correct answer

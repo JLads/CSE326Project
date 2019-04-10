@@ -26,10 +26,27 @@ public class TestLogger{
 	 * stores name of the test file being used
 	 */
 	public TestLogger(String _fname) {
+		this.Initialize(_fname);
+	}
+	
+	/**
+	 * Initializes all of the ivars.
+	 * Calling this a second time will reset the ivars to blank states.
+	 * @param _fname
+	 */
+	public void Initialize(String _fname) {
 		fname = _fname;
 		response = new ArrayList<String>();
 		correct = new ArrayList<String>();
 		pairId = new ArrayList<Integer>();
+	}
+	
+	/**
+	 * Calls initialize to reset the static ivars to blank states
+	 * This prevents future settings of the statics from being appended to
+	 */
+	public void Clear() {
+		this.Initialize(null);
 	}
 	
 	/**
