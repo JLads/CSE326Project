@@ -115,7 +115,7 @@ public class TestLogger{
 		ArrayList<String> lines = new ArrayList<String>();
 		
 		lines.add(fname);
-		lines.add("Test#,Correct,Subject");
+		lines.add("Test#,Correct,Subject,Points");
 		
 		for(int i = 0; i < response.size(); i++) {
 			String s = String.format("%d,%s,%s,%d", pairId.get(i), correct.get(i), response.get(i), pointTotal.get(i));
