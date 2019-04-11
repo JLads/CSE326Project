@@ -72,11 +72,7 @@ public class TestLogger{
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
-		if(ans.contentEquals("yes")) {
-			points += 10; 
-		} else {
-			points -= 5;
-		}
+		calcPoints("yes", ans);
 		pointTotal.add(points);
 	}
 	
@@ -91,12 +87,21 @@ public class TestLogger{
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
-		if(ans.contentEquals("no")) {
-			points += 10; 
+		calcPoints("no", ans);
+		pointTotal.add(points);
+	}
+	
+	/**
+	 * compares user response to correct answer to calculate points
+	 * @param response Test subject response as a string
+	 * @param correct Correct response for the current test as a string
+	 */
+	private void calcPoints(String response, String correct) {
+		if (response.contentEquals(correct)) {
+			points += 10;
 		} else {
 			points -= 5;
 		}
-		pointTotal.add(points);
 	}
 	
 	/**
