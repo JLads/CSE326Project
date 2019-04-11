@@ -30,6 +30,13 @@ public interface TestRetriever {
 	}
 	
 	/**
+	 * Set ivar values to defaults
+	 */
+	public static void proxyClear() {
+		tl.Clear();
+	}
+	
+	/**
 	 * returns a sequence of audio files for a given test
 	 * @param testnum the test for which to retrieve a sequence of
 	 * @param seqID the sequence to be retrieved

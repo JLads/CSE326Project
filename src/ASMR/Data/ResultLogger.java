@@ -18,6 +18,13 @@ public interface ResultLogger {
 	}
 	
 	/**
+	 * Clears static ivars
+	 */
+	public static void proxyClear() {
+		tLog.Clear();
+	}
+	
+	/**
 	 * records test result of yes
 	 * @param ans the correct answer
 	 */
@@ -31,6 +38,14 @@ public interface ResultLogger {
 	 */
 	public static void proxyLogNo(String ans) {
 		tLog.logNo(ans);
+	}
+	
+	/**
+	 * Get current points for subject
+	 * @return points earned as an int
+	 */
+	public static int proxyGetPoints() {
+		return tLog.getPoints();
 	}
 	
 	/**

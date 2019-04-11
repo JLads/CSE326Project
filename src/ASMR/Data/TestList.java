@@ -19,7 +19,22 @@ public class TestList {
 	 * Initializes the object list on instantiation
 	 */
 	public TestList() {
+		this.Initialize();
+	}
+	
+	/**
+	 * Initialize the static ivars.
+	 * Calling a second time resets ivars to blank state.
+	 */
+	public void Initialize() {
 		tests = new ArrayList<Test>();
+	}
+	
+	/**
+	 * Reinitializes the static variables
+	 */
+	public void Clear() {
+		this.Initialize();
 	}
 	
 	/**
