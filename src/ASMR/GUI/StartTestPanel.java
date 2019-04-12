@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JTextArea;
 
 /**
  * a class the implements the pre-test panel that instructs the user on what to do
@@ -37,29 +37,19 @@ public class StartTestPanel extends AbstractPanel{
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		//set up message to test subject
-		JLabel label1 = new JLabel("Directions for the test:");
-		label1.setFont(new Font("Aerial", Font.PLAIN, 20));
+		JTextArea text = new JTextArea();
+		text.setEditable(false);
+		text.setBackground(this.getBackground());
+		text.setFont(new Font("Aerial", Font.PLAIN, 20));
+		text.setText("Directions for the test:\n"
+				+ "Press the 'Play Audio' button to play two sequences of audio clips,\n"
+				+ "Press the 'Yes' or 'No' button if you believe the sequences are the same.\n"
+				+ "10 points will be rewarded for correct answers.\n"
+				+ "5 points will be deducted for incorrect answers.\n"
+				+ "When you are ready, press the button below to start the test.");
 		gbc.gridx=0;
 		gbc.gridy=0;
-		this.add(label1, gbc);
-		
-		JLabel label2 = new JLabel("Press the 'Play Audio' button to play two sequences of audio clips, seperated by a second of silence.");
-		label2.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
-		gbc.gridy=1;
-		this.add(label2, gbc);
-		
-		JLabel label3 = new JLabel("Press the 'Yes' or 'No' button if you believe the sequences are the same.");
-		label3.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
-		gbc.gridy=2;
-		this.add(label3, gbc);
-		
-		JLabel label4 = new JLabel("When you are ready, press the button below to start the test.");
-		label4.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
-		gbc.gridy=3;
-		this.add(label4, gbc);
+		this.add(text, gbc);
 		
 		//button to start the test
 		JButton button = new JButton("Start Test");
@@ -71,7 +61,7 @@ public class StartTestPanel extends AbstractPanel{
 			}
 		});
 		gbc.gridx=0;
-		gbc.gridy=4;
+		gbc.gridy=1;
 		this.add(button, gbc);
 	}
 
