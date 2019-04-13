@@ -57,6 +57,9 @@ public class RunTestPanel extends AbstractPanel {
 		gbc.insets = new Insets(10,10,10,10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//point system
+		JLabel pointLabel = new JLabel("Points: " + ResultLogger.proxyGetPoints());
+		
 		//initialize buttons
 		JButton playButton = new JButton("Play Audio");
 		JButton yesButton = new JButton("Yes");
@@ -98,6 +101,7 @@ public class RunTestPanel extends AbstractPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				recordResult(true);
+				pointLabel.setText("Points: " + ResultLogger.proxyGetPoints());
 				if((finSeq+1)==numSeq) {
 					AbstractPanel.getFrame().changePanel(new EndTestPanel());
 				}
@@ -113,6 +117,7 @@ public class RunTestPanel extends AbstractPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				recordResult(false);
+				pointLabel.setText("Points: " + ResultLogger.proxyGetPoints());
 				if((finSeq+1)==numSeq) {
 					AbstractPanel.getFrame().changePanel(new EndTestPanel());
 				}
@@ -127,22 +132,27 @@ public class RunTestPanel extends AbstractPanel {
 		JLabel label = new JLabel("Were the sequences the same?");
 		font = new Font("Aerial", Font.PLAIN, 20);
 		label.setFont(font);
+		pointLabel.setFont(font);
 		
 		//set positions in panel
 		gbc.gridx=1;
 		gbc.gridy=0;
-		this.add(playButton, gbc);
+		this.add(pointLabel, gbc);
 		
 		gbc.gridx=1;
 		gbc.gridy=1;
+		this.add(playButton, gbc);
+		
+		gbc.gridx=1;
+		gbc.gridy=2;
 		this.add(label, gbc);
 		
 		gbc.gridx=0;
-		gbc.gridy=2;
+		gbc.gridy=3;
 		this.add(yesButton, gbc);
 		
 		gbc.gridx=2;
-		gbc.gridy=2;
+		gbc.gridy=3;
 		this.add(noButton, gbc);
 	}
 }

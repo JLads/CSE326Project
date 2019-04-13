@@ -8,7 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+import ASMR.Data.ResultLogger;
 
 /**
  * A class that implements the post-test panel
@@ -37,17 +39,16 @@ public class EndTestPanel extends AbstractPanel {
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		//message to user
-		JLabel label1 = new JLabel("Test Complete!");
-		label1.setFont(new Font("Aerial", Font.PLAIN, 20));
-		gbc.gridx=0;
+		JTextArea text = new JTextArea();
+		text.setEditable(false);
+		text.setBackground(this.getBackground());
+		text.setFont(new Font("Aerial", Font.PLAIN, 20));
+		text.setText("Test Complete!\n"
+				+ "Please inform the test administrator.\n"
+				+ "Total points: " + ResultLogger.proxyGetPoints());
 		gbc.gridy=0;
-		this.add(label1, gbc);
-		
-		JLabel label2 = new JLabel("Please inform the test administrator.");
-		label2.setFont(new Font("Aerial", Font.PLAIN, 20));
 		gbc.gridx=0;
-		gbc.gridy=1;
-		this.add(label2, gbc);
+		this.add(text, gbc);
 		
 		//continue button
 		JButton button = new JButton("Continue");
@@ -59,7 +60,7 @@ public class EndTestPanel extends AbstractPanel {
 			}
 		});
 		gbc.gridx=0;
-		gbc.gridy=2;
+		gbc.gridy=1;
 		this.add(button, gbc);
 	}
 }
