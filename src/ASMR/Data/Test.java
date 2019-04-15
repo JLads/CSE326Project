@@ -121,6 +121,10 @@ public class Test {
 		return this.second;
 	}
 	
+	/**
+	 * Returns the directory path for the files in test
+	 * @return directory path as a string
+	 */
 	public String getDir() {
 		return this.dir;
 	}
