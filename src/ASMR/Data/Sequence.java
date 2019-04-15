@@ -18,16 +18,6 @@ public class Sequence {
 		clips = new ArrayList<String>();
 	}
 	
-	/** can probably remove this unused constructor
-	 * Constructor that takes a comma separated string of file paths
-	 * @param fileList list of file paths to parse
-	 */
-	public Sequence(String fileList) {
-		clips = new ArrayList<String>();
-		for(String filePath : fileList.split(",")) {
-			clips.add(filePath);
-		}
-	}
 	
 	/**
 	 * adds a new file path to the list of file paths
