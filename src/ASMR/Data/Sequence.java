@@ -18,7 +18,7 @@ public class Sequence {
 		clips = new ArrayList<String>();
 	}
 	
-	/**
+	/** can probably remove this unused constructor
 	 * Constructor that takes a comma separated string of file paths
 	 * @param fileList list of file paths to parse
 	 */
@@ -64,5 +64,21 @@ public class Sequence {
 			
 		}
 		System.out.println();
+	}
+	
+	/**
+	 * return a comma separated string of file names
+	 */
+	@Override
+	public String toString() {
+		String tmp = null;
+		for(int i = 0; i < clips.size(); i++) {
+			if(i == 0) {
+				tmp = clips.get(i);
+			} else {
+				tmp += "," + clips.get(i);
+			}
+		}
+		return tmp;
 	}
 }

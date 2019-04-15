@@ -49,8 +49,8 @@ public class TestList {
 		
 		ArrayList<String> lines = CSVIO.readFile(fp);
 		
-		for(int i = 0; i < lines.size(); i+=4) {
-			tests.add(new Test(lines.get(i), lines.get(i+1), lines.get(i+2)));
+		for(int i = 0; i < lines.size(); i+=5) {
+			tests.add(new Test(lines.get(i), lines.get(i+1), lines.get(i+2), lines.get(i+3)));
 		}
 	
 		return tests.size();

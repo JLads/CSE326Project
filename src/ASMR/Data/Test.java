@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  */
 public class Test {
-	
+	private String dir;			//directory path for files in this test
 	private String id; 			//name of csv holding test information
 	private String answer; 		//correct answer string from test.csv
 	private Sequence first; 	//first sequence in test pair
@@ -23,14 +23,42 @@ public class Test {
 
 	/**
 	 * default constructor
+	 * Separates comma separated lines into individual file names
 	 * @param _seqA the first sequence of the test
 	 * @param _seqB the second sequence of the test
 	 * @param _answer the correct answer for the test
 	 */
-	public Test(String _seqA, String _seqB, String _answer) {
+	public Test(String _dir, String _seqA, String _seqB, String _answer) {
 		this.answer = _answer;
-		this.first = new Sequence(_seqA);
-		this.second = new Sequence(_seqB);
+		this.dir = _dir;
+		this.first = new Sequence();
+		this.second = new Sequence();
+		for(String filePath : _seqA.split(",")) {
+			first.InsertClip(filePath);
+		}
+		for(String filePath : _seqB.split(",")) {
+			second.InsertClip(filePath);
+		}
+	}
+	
+	/**
+	 * constructor that uses array lists of clip files instead of
+	 * comma separated lines
+	 * @param seqA first sequence of the test as an array list of strings
+	 * @param seqB second sequence of the test as an array list of strings
+	 * @param ans correct response for the test
+	 */
+	public Test(String _dir, ArrayList<String> seqA, ArrayList<String> seqB, String ans) {
+		this.answer = ans;
+		this.dir = _dir;
+		this.first = new Sequence();
+		this.second = new Sequence();
+		for (String fp:seqA) {
+			first.InsertClip(fp);
+		}
+		for (String fp:seqB) {
+			second.InsertClip(fp);
+		}
 	}
 	
 	/**
@@ -91,5 +119,9 @@ public class Test {
 	 */
 	public Sequence getSecond() {
 		return this.second;
+	}
+	
+	public String getDir() {
+		return this.dir;
 	}
 }
