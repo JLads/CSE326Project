@@ -1,6 +1,10 @@
 package TestDataPackage;
 
+import java.util.ArrayList;
+
 import ASMR.Data.ResultLogger;
+import ASMR.Data.Sequence;
+import ASMR.Data.TestMaker;
 import ASMR.Data.TestRetriever;
 import ASMR.Util.ClipPlayer;
 
@@ -58,8 +62,32 @@ public class TestDataFiles {
 		
 	}
 	
+	public static void testToString() {
+		Sequence tmp = new Sequence();
+		tmp.InsertClip("killedkenny.wav");
+		tmp.InsertClip("killedkenny.wav");
+		tmp.InsertClip("killedkenny.wav");
+		System.out.println(tmp.toString());
+		
+		
+	}
+	
+	public static void testSaveTest() {
+		TestMaker tmp = new TestMaker();
+		ArrayList<String> se1 = new ArrayList<String>();
+		se1.add("a");
+		se1.add("b");
+		ArrayList<String> se2 = new ArrayList<String>();
+		se2.add("c");
+		se2.add("d");
+		
+		tmp.addTest("dir", se1, se2, false);
+		tmp.saveTests("C:\\Users\\starf\\Documents\\test.csv");
+		
+	}
 	
 	public static void main(String[] args) {
-		testPoints();
+		testToString();
+		testSaveTest();
 	}
 }

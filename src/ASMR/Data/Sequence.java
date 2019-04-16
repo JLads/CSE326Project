@@ -18,16 +18,6 @@ public class Sequence {
 		clips = new ArrayList<String>();
 	}
 	
-	/**
-	 * Constructor that takes a comma separated string of file paths
-	 * @param fileList list of file paths to parse
-	 */
-	public Sequence(String fileList) {
-		clips = new ArrayList<String>();
-		for(String filePath : fileList.split(",")) {
-			clips.add(filePath);
-		}
-	}
 	
 	/**
 	 * adds a new file path to the list of file paths
@@ -64,5 +54,21 @@ public class Sequence {
 			
 		}
 		System.out.println();
+	}
+	
+	/**
+	 * return a comma separated string of file names
+	 */
+	@Override
+	public String toString() {
+		String tmp = null;
+		for(int i = 0; i < clips.size(); i++) {
+			if(i == 0) {
+				tmp = clips.get(i);
+			} else {
+				tmp += "," + clips.get(i);
+			}
+		}
+		return tmp;
 	}
 }
