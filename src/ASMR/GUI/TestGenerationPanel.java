@@ -11,9 +11,14 @@ import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ASMR.Data.CreateTestFiles;
 
@@ -26,6 +31,9 @@ public class TestGenerationPanel extends AbstractPanel{
 	private ArrayList<String> seq2;
 	private Boolean answer;
 	
+	Font labelFont = new Font("Aerial", Font.PLAIN, 15);
+	Font buttonFont = new Font("Aerial", Font.PLAIN, 20);
+	
 	public TestGenerationPanel() {
 		this.initialize();
 		CreateTestFiles.proxyClear();
@@ -33,27 +41,28 @@ public class TestGenerationPanel extends AbstractPanel{
 	}
 	
 	public void initialize() {
-		this.directory = null;
-		this.seq1 = new ArrayList<String>();
-		this.seq2 = new ArrayList<String>();
+		this.directory = System.getProperty("user.home");
+		this.seq1 = new ArrayList<String>(5);
+		this.seq2 = new ArrayList<String>(5);
 		this.answer = Boolean.TRUE;
 	}
 	
-	@Override
-	public void buildPanel() {
-		this.setLayout(new GridBagLayout());
+	private JPanel buildDirectorySelector() {
+		JPanel dirSelectorPanel = new JPanel();
+		
+		dirSelectorPanel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.BOTH;
 		
-		Font buttonFont = new Font("Aerial", Font.PLAIN, 40);
-		
-		//directory selector
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV FILE", "wav");
+		chooser.setFileFilter(filter);
 		
-		JTextArea dirText = new JTextArea(this.directory);
-		dirText.setFont(new Font("Aerial", Font.PLAIN, 15));
-		dirText.addKeyListener(new KeyListener() {
+		JTextArea text = new JTextArea(this.directory);
+		text.setFont(this.labelFont);
+		text.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {updateText();}
 			@Override
@@ -62,59 +71,56 @@ public class TestGenerationPanel extends AbstractPanel{
 			public void keyReleased(KeyEvent e) {updateText();}
 			
 			public void updateText() {
-				directory = dirText.getText().trim();
-				dirText.setText(directory);
+				directory = text.getText().trim();
+				text.setText(directory);
 			}
 		});
 		
-		JButton dirBrowse = new JButton("Browse");
-		dirBrowse.setFont(new Font("Aerial", Font.PLAIN, 20));
-		dirBrowse.addActionListener(new ActionListener() {
+		//button for browsing files
+		JButton browse = new JButton("Browse");
+		browse.setFont(this.buttonFont);
+		browse.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int retVal = chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = chooser.getSelectedFile();
 					directory = file.getPath();
-					dirText.setText(directory);
+					text.setText(directory);
 				}
 			}
 		});
 		
 		gbc.gridy=0;
-		gbc.gridx=1;
-		gbc.weightx=3;
-		this.add(dirText, gbc);
-		gbc.weightx=1;
+		gbc.gridx=0;
+		dirSelectorPanel.add(text, gbc);
 		
 		gbc.gridy=0;
-		gbc.gridx=4;
-		this.add(dirBrowse, gbc);
+		gbc.gridx=1;
+		dirSelectorPanel.add(browse, gbc);
 		
-		//seq1 selectors
+		return dirSelectorPanel;
+	}
+	
+	@Override
+	public void buildPanel() {
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.BOTH;
 		
-		//seq2 selectors
+		//directory selector
+		JLabel dirLabel = new JLabel("Directory:");
+		dirLabel.setFont(labelFont);
 		
-		//correct answer selector
+		gbc.gridy=0;
+		gbc.gridx=0;
+		this.add(dirLabel, gbc);
 		
-		//add to list button
+		gbc.gridy=1;
+		gbc.gridx=0;
+		this.add(this.buildDirectorySelector(), gbc);
 		
-		//test number tracker
-		
-		//save test
-		
-		//return
-		JButton returnButton = new JButton("Return");
-		returnButton.setFont(buttonFont);
-		returnButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AbstractPanel.getFrame().changePanel(new MainPanel());
-			}
-		});
-		gbc.gridx=4;
-		gbc.gridy=9;
-		this.add(returnButton, gbc);
 	}
 
 }
