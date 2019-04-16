@@ -12,10 +12,12 @@ import javax.swing.SwingUtilities;
 import ASMR.GUI.MainFrame;
 import ASMR.GUI.TestGenerationPanel;
 
+/**
+ * A class for testing the TestGenerationPanel
+ * @author nicholas
+ *
+ */
 public class TestTestGernerationPanel {
-
-	private static final int widthShrink = 1000;
-	private static final int heightShrink = 500;
 	
 	public static void main(String args[]) {
 		TestTestGenerationPanel();
@@ -34,7 +36,7 @@ public class TestTestGernerationPanel {
 					
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
-					frame.setSize(new Dimension(gdb.width-widthShrink, gdb.height-heightShrink));
+					frame.setSize(new Dimension(gdb.width, gdb.height));
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setIconImage(null);
 					frame.setVisible(true);
