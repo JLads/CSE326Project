@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 import ASMR.Util.CSVIO;
 
+/**
+ * Takes user input from gui and converts it to a test.csv file
+ * Builds one test at a time and stores them in an array list of tests.
+ * The tests are written out by our UTIL file writer at the end.
+ * @author Joseph
+ *
+ */
 public class TestMaker {
 
-	private static ArrayList<Test> tests;
+	private static ArrayList<Test> tests;    //List of test objects created by user
 	
 	/**
 	 * Default constructor

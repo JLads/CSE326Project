@@ -63,8 +63,10 @@ public class TestDataFiles {
 	}
 	
 	public static void testToString() {
-		Sequence tmp = new Sequence("killedkenny.wav,killedkenny.wav");
-		
+		Sequence tmp = new Sequence();
+		tmp.InsertClip("killedkenny.wav");
+		tmp.InsertClip("killedkenny.wav");
+		tmp.InsertClip("killedkenny.wav");
 		System.out.println(tmp.toString());
 		
 		
