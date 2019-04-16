@@ -50,19 +50,16 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * default constructor
 	 */
 	public TestGenerationPanel() {
-		this.initialize();
+		this.directory = System.getProperty("user.home");
+		this.seq1 = new ArrayList<String>();
+		this.seq2 = new ArrayList<String>();
+		for(int i = 0; i < 5; i++) {
+			seq1.add(null);
+			seq2.add(null);
+		}
+		this.answer = Boolean.TRUE;
 		CreateTestFiles.proxyClear();
 		this.buildPanel();
-	}
-	
-	/**
-	 * initializes the variables to their base values
-	 */
-	public void initialize() {
-		this.directory = System.getProperty("user.home");
-		this.seq1 = new ArrayList<String>(5);
-		this.seq2 = new ArrayList<String>(5);
-		this.answer = Boolean.TRUE;
 	}
 	
 	/**
@@ -168,7 +165,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				int retVal = f1chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = f1chooser.getSelectedFile();
-					seq.add(0, file.getName());
+					seq.set(0, file.getName());
 					f1text.setText(seq.get(0));
 				}
 			}
@@ -205,7 +202,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				int retVal = f2chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = f2chooser.getSelectedFile();
-					seq.add(1, file.getName());
+					seq.set(1, file.getName());
 					f2text.setText(seq.get(1));
 				}
 			}
@@ -242,7 +239,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				int retVal = f3chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = f3chooser.getSelectedFile();
-					seq.add(2, file.getName());
+					seq.set(2, file.getName());
 					f3text.setText(seq.get(2));
 				}
 			}
@@ -279,7 +276,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				int retVal = f4chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = f4chooser.getSelectedFile();
-					seq.add(3, file.getName());
+					seq.set(3, file.getName());
 					f4text.setText(seq.get(3));
 				}
 			}
@@ -316,7 +313,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				int retVal = f5chooser.showOpenDialog(TestGenerationPanel.this);
 				if(retVal == JFileChooser.APPROVE_OPTION) {
 					File file = f5chooser.getSelectedFile();
-					seq.add(4, file.getName());
+					seq.set(4, file.getName());
 					f5text.setText(seq.get(4));
 				}
 			}
@@ -419,6 +416,53 @@ public class TestGenerationPanel extends AbstractPanel{
 		return panel;
 	}
 	
+	/**
+	 * checks the various inputs for test generation
+	 * @return boolean true or false
+	 */
+	private boolean checkParams() {
+		return true;
+	}
+	
+	/**
+	 * a print method for testing
+	 */
+	public void printParams() {
+		System.out.println(directory);
+		System.out.println(seq1.toString());
+		System.out.println(seq2.toString());
+		System.out.println(answer.toString());
+	}
+	
+	/**
+	 * builds a sub panel for generating a test from input
+	 * @return
+	 */
+	private JPanel addTestPanel() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		JButton addTest = new JButton("Add test");
+		addTest.setFont(buttonFont);
+		addTest.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkParams()) {
+					CreateTestFiles.proxyAddTest(directory, seq1, seq2, answer);
+				}
+			}
+		});
+		
+		gbc.gridy=0;
+		gbc.gridx=0;
+		panel.add(addTest, gbc);
+		
+		return panel;
+	}
+	
 	@Override
 	public void buildPanel() {
 		this.setLayout(new GridBagLayout());
@@ -437,6 +481,10 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridy=2;
 		gbc.gridx=0;
 		this.add(this.answerSelector(), gbc);
+		
+		gbc.gridy=3;
+		gbc.gridx=0;
+		this.add(this.addTestPanel(), gbc);
 	}
 
 }
