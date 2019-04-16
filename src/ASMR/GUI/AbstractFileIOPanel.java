@@ -43,6 +43,10 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	private String checkFilePath(String fp) {
 		//most of this is here due to the ability of a user to manually input a path rather than use the file browser
 		if((this instanceof LoadTestFilePanel)||(this instanceof LoadResultsFilePanel)) {
+			if(fp.length()==0) {
+				new ErrorWindow("File path can't be empty");
+				return null;
+			}
 			File f = new File(fp);
 			if(!f.isFile()) {
 				new ErrorWindow("Given path is not a file: "+fp);
