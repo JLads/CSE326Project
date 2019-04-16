@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -333,7 +334,7 @@ public class TestGenerationPanel extends AbstractPanel{
 	
 	/**
 	 * builds a sub panel for sequence selection
-	 * @return sub panel for sequence selection
+	 * @return jpanel for sequence selection
 	 */
 	private JPanel sequenceSelectors() {
 		JPanel panel = new JPanel();
@@ -366,6 +367,58 @@ public class TestGenerationPanel extends AbstractPanel{
 		return panel;
 	}
 	
+	/**
+	 * builds a sub panel for selecting the correct answer of a test
+	 * @return a jpanel for selecting correct answer
+	 */
+	private JPanel answerSelector() {
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		JLabel label = new JLabel("Correct Answer:");
+		label.setFont(this.labelFont);
+		gbc.gridy=0;
+		gbc.gridx=0;
+		panel.add(label, gbc);
+		
+		JCheckBox yesCheck = new JCheckBox("Yes");
+		yesCheck.setFont(this.buttonFont);
+		yesCheck.setSelected(this.answer);
+		
+		JCheckBox noCheck = new JCheckBox("No");
+		noCheck.setFont(this.buttonFont);
+		noCheck.setSelected(!this.answer);
+		
+		yesCheck.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				answer=yesCheck.isSelected();
+				noCheck.setSelected(!answer);
+			}
+		});
+		
+		noCheck.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				answer = !noCheck.isSelected();
+				yesCheck.setSelected(answer);
+			}
+		});
+		
+		gbc.gridy=0;
+		gbc.gridx=1;
+		panel.add(yesCheck, gbc);
+		
+		gbc.gridy=0;
+		gbc.gridx=2;
+		panel.add(noCheck, gbc);
+		
+		return panel;
+	}
+	
 	@Override
 	public void buildPanel() {
 		this.setLayout(new GridBagLayout());
@@ -380,6 +433,10 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridy=1;
 		gbc.gridx=0;
 		this.add(this.sequenceSelectors(), gbc);
+		
+		gbc.gridy=2;
+		gbc.gridx=0;
+		this.add(this.answerSelector(), gbc);
 	}
 
 }
