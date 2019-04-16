@@ -22,10 +22,6 @@ import ASMR.GUI.MainPanel;
  */
 public class ASMR implements UncaughtExceptionHandler, WindowListener {
 	
-	//the amount to subtract from the default window dimensions
-	private static final int widthShrink = 1000;
-	private static final int heightShrink = 500;
-	
 	public static void main(String args[]) {new ASMR();}
 	
 	/**
@@ -49,7 +45,7 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 					//configure window
 					GraphicsDevice gd = graphicsEnvironment.getDefaultScreenDevice();
 					Rectangle gdb = gd.getDefaultConfiguration().getBounds();
-					frame.setSize(new Dimension(gdb.width-widthShrink, gdb.height-heightShrink));
+					frame.setSize(new Dimension(gdb.width, gdb.height));
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.addWindowListener(ASMR.this);
 					frame.setIconImage(null);
