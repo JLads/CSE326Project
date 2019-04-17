@@ -24,14 +24,14 @@ public class RunTestPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = -3562232664994471584L;
 
-	private int numSeq;		//the number of sequences to test
-	private int finSeq = 0;	//the number of sequences that have been tested
+	private int numTests;		//the number of sequences to test
+	private int finTests = 0;	//the number of sequences that have been tested
 	
 	/**
 	 * constructor
 	 */
 	public RunTestPanel() {
-		this.numSeq = TestRetriever.proxyGetListSize();
+		this.numTests = TestRetriever.proxyGetListSize();
 		buildPanel();
 	}
 	
@@ -41,9 +41,9 @@ public class RunTestPanel extends AbstractPanel {
 	 */
 	private void recordResult(Boolean result) {
 		if(result) {
-			ResultLogger.proxyLogYes(TestRetriever.proxyGetAnswer(this.finSeq));
+			ResultLogger.proxyLogYes(TestRetriever.proxyGetAnswer(this.finTests));
 		}else {
-			ResultLogger.proxyLogNo(TestRetriever.proxyGetAnswer(this.finSeq));
+			ResultLogger.proxyLogNo(TestRetriever.proxyGetAnswer(this.finTests));
 		}
 	}
 	
@@ -78,8 +78,8 @@ public class RunTestPanel extends AbstractPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for(int i = 1; i <= 2; i++) {
-					for(String file : TestRetriever.proxyGetSequence(finSeq, i)) {
-						ClipPlayer.playSoundFile(file);
+					for(String file : TestRetriever.proxyGetSequence(finTests, i)) {
+						ClipPlayer.playSoundFile(TestRetriever.proxyGetDir(finTests)+"/"+file);
 					}
 					if(i!=2) {
 						try {
@@ -102,13 +102,13 @@ public class RunTestPanel extends AbstractPanel {
 			public void actionPerformed(ActionEvent e) {
 				recordResult(true);
 				pointLabel.setText("Points: " + ResultLogger.proxyGetPoints());
-				if((finSeq+1)==numSeq) {
+				if((finTests+1)==numTests) {
 					AbstractPanel.getFrame().changePanel(new EndTestPanel());
 				}
 				playButton.setEnabled(true);
 				yesButton.setEnabled(false);
 				noButton.setEnabled(false);
-				finSeq+=1;
+				finTests+=1;
 			}
 		});
 		
@@ -118,13 +118,13 @@ public class RunTestPanel extends AbstractPanel {
 			public void actionPerformed(ActionEvent e) {
 				recordResult(false);
 				pointLabel.setText("Points: " + ResultLogger.proxyGetPoints());
-				if((finSeq+1)==numSeq) {
+				if((finTests+1)==numTests) {
 					AbstractPanel.getFrame().changePanel(new EndTestPanel());
 				}
 				playButton.setEnabled(true);
 				yesButton.setEnabled(false);
 				noButton.setEnabled(false);
-				finSeq+=1;
+				finTests+=1;
 			}
 		});
 		
