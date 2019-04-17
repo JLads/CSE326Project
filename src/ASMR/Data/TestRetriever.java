@@ -56,6 +56,15 @@ public interface TestRetriever {
 	}
 	
 	/**
+	 * returns the directory for a test
+	 * @param testnum the number of the test in the list of tests
+	 * @return the directory for a test
+	 */
+	public static String proxyGetDir(int testnum) {
+		return tl.getDir(testnum);
+	}
+	
+	/**
 	 * gets the size of the list of tests
 	 * @return the size of the list of tests
 	 */

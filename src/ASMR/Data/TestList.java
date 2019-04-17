@@ -89,6 +89,15 @@ public class TestList {
 	public String getAnswer(int testnum) {
 		return tests.get(testnum).getAnswer();
 	}
+	
+	/**
+	 * returns the directory for a test
+	 * @param testnum the number of the test in the list of tests
+	 * @return the directory for a test
+	 */
+	public String getDir(int testnum) {
+		return tests.get(testnum).getDir();
+	}
 
 	/**
 	 * returns the size of the list of tests
