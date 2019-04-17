@@ -51,7 +51,7 @@ public class RAnalysis {
 	 * Gets the platform-dependent file path of the "Rscript" executable
 	 * @return The string representation of the Rscript file path
 	 */
-	public static String getRScriptCommand() {
+	private static String getRScriptCommand() {
 		String OSName = System.getProperty("os.name").toLowerCase();
 		String rCommand = null;
 		if (OSName.contains("windows")) {
@@ -74,7 +74,7 @@ public class RAnalysis {
 	 * @param rScript Absolute path of the R script to run
 	 * @return The output of the R script as a BufferedOutput object
 	 */
-	public static BufferedReader runRScript(String rScript) {
+	private static BufferedReader runRScript(String rScript) {
 
 		Process rChild;
 		BufferedReader rOutput = null;
