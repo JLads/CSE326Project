@@ -50,7 +50,6 @@ public class RegistryStreamEater extends Thread {
 					if (j >= 0)
 						s = s.substring(j + 6).trim();
 					installPath = s;
-					System.out.println("R InstallPath = " + s);
 				}
 			}
 		}
