@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -426,6 +427,31 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * @return boolean true or false
 	 */
 	private boolean checkParams() {
+		for (String s : seq1) {
+			if(s==null) {
+				new ErrorWindow("All files must be selected");
+				return false;
+			}
+		}
+		for (String s : seq2) {
+			if(s==null) {
+				new ErrorWindow("All files must be selected");
+				return false;
+			}
+		}
+		File dir = new File(directory);
+		for (String s : seq1) {
+			if(!Arrays.asList(dir.list()).contains(s)) {
+				new ErrorWindow("Wav file was not found in directory:"+s+"; "+directory);
+				return false;
+			}
+		}
+		for (String s : seq2) {
+			if(!Arrays.asList(dir.list()).contains(s)) {
+				new ErrorWindow("Wav file was not found in directory:"+s+"; "+directory);
+				return false;
+			}
+		}
 		return true;
 	}
 	
