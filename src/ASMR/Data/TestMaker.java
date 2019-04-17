@@ -68,4 +68,12 @@ public class TestMaker {
 		CSVIO.writeFile(tmp, fname);
 	}
 	
+	/**
+	 * returns the number of tests in the list
+	 * @return the number of tests in the list
+	 */
+	public int getNumTests() {
+		return tests.size();
+	}
+	
 }

@@ -39,4 +39,12 @@ public interface CreateTestFiles {
 		tmake.saveTests(fname);
 	}
 	
+	/**
+	 * returns the number of tests
+	 * @return the number of tests
+	 */
+	public static int proxyGetNumTests() {
+		return tmake.getNumTests();
+	}
+	
 }
