@@ -23,7 +23,6 @@ import ASMR.Data.CreateTestFiles;
 /**
  * a panel for building test files
  * @author nicholas
- * TODO fix file and directory path processing so the dir is subtracted from file.path instead of using file.name
  */
 public class TestGenerationPanel extends AbstractPanel{
 
