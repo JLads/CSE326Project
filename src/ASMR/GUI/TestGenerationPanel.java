@@ -67,15 +67,15 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * @return a jpanel for selecting a directory
 	 */
 	private JPanel buildDirectorySelector() {
-		JPanel dirSelectorPanel = new JPanel();
+		JPanel panel = new JPanel();
 		
-		dirSelectorPanel.setLayout(new GridBagLayout());
+		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		JLabel label = new JLabel("Directory:");
-		label.setFont(labelFont);
+		label.setFont(this.labelFont);
 		
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -112,18 +112,18 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridy=0;
 		gbc.gridx=0;
 		gbc.ipadx=1200;
-		dirSelectorPanel.add(label, gbc);
+		panel.add(label, gbc);
 		gbc.ipadx=0;
 		
 		gbc.gridy=1;
 		gbc.gridx=0;
-		dirSelectorPanel.add(text, gbc);
+		panel.add(text, gbc);
 		
 		gbc.gridy=1;
 		gbc.gridx=2;
-		dirSelectorPanel.add(browse, gbc);
+		panel.add(browse, gbc);
 		
-		return dirSelectorPanel;
+		return panel;
 	}
 	
 	/**
@@ -139,6 +139,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//file 1 selector
 		JLabel file1Label = new JLabel("File 1:");
 		file1Label.setFont(this.labelFont);
 		gbc.gridy=0;
@@ -178,6 +179,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridx=1;
 		panel.add(f1browse, gbc);
 		
+		//file 2 selector
 		JLabel file2Label = new JLabel("File 2:");
 		file2Label.setFont(this.labelFont);
 		gbc.gridy=2;
@@ -215,6 +217,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridx=1;
 		panel.add(f2browse, gbc);
 		
+		//file 3 selector
 		JLabel file3Label = new JLabel("File 3:");
 		file3Label.setFont(this.labelFont);
 		gbc.gridy=4;
@@ -252,6 +255,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridx=1;
 		panel.add(f3browse, gbc);
 		
+		//file 4 selector
 		JLabel file4Label = new JLabel("File 4:");
 		file4Label.setFont(this.labelFont);
 		gbc.gridy=6;
@@ -289,6 +293,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridx=1;
 		panel.add(f4browse, gbc);
 		
+		//file 5 selector
 		JLabel file5Label = new JLabel("File 5:");
 		file5Label.setFont(this.labelFont);
 		gbc.gridy=8;
@@ -342,7 +347,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		
 		//Sequence 1 selector
 		JLabel seq1Label = new JLabel("Sequence 1");
-		seq1Label.setFont(labelFont);
+		seq1Label.setFont(this.labelFont);
 		gbc.gridy=0;
 		gbc.gridx=0;
 		panel.add(seq1Label, gbc);
@@ -353,7 +358,7 @@ public class TestGenerationPanel extends AbstractPanel{
 				
 		//sequence 2 selector
 		JLabel seq2Label = new JLabel("Sequence 2");
-		seq2Label.setFont(labelFont);
+		seq2Label.setFont(this.labelFont);
 		gbc.gridy=0;
 		gbc.gridx=1;
 		panel.add(seq2Label, gbc);
@@ -375,16 +380,18 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//label for correct answer check box
 		JLabel label = new JLabel("Correct Answer:");
 		label.setFont(this.labelFont);
-		gbc.gridy=0;
 		gbc.gridx=0;
 		panel.add(label, gbc);
 		
+		//check box for correct answer 'yes'
 		JCheckBox yesCheck = new JCheckBox("Yes");
 		yesCheck.setFont(this.buttonFont);
 		yesCheck.setSelected(this.answer);
-		
+
+		//check box for correct answer 'no'
 		JCheckBox noCheck = new JCheckBox("No");
 		noCheck.setFont(this.buttonFont);
 		noCheck.setSelected(!this.answer);
@@ -405,11 +412,9 @@ public class TestGenerationPanel extends AbstractPanel{
 			}
 		});
 		
-		gbc.gridy=0;
 		gbc.gridx=1;
 		panel.add(yesCheck, gbc);
 		
-		gbc.gridy=0;
 		gbc.gridx=2;
 		panel.add(noCheck, gbc);
 		
@@ -445,13 +450,25 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
-		JButton addTest = new JButton("Add test");
-		addTest.setFont(buttonFont);
+		//button for generating a test from input
+		JButton addTest = new JButton("Add Test");
+		addTest.setFont(this.buttonFont);
 		addTest.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkParams()) {
 					CreateTestFiles.proxyAddTest(directory, seq1, seq2, answer);
+					for(JFileChooser jfc : fileChoosers) {
+						jfc.setCurrentDirectory(new File(directory));
+						jfc.setSelectedFile(null);
+					}
+					for(JTextArea jta : fileTextAreas) {
+						jta.setText(null);
+					}
+					for(int i = 0; i < 5; i++) {
+						seq1.set(i, null);
+						seq2.set(i, null);
+					}
 				}
 			}
 		});
@@ -471,19 +488,15 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		gbc.gridy=0;
-		gbc.gridx=0;
 		this.add(this.buildDirectorySelector(), gbc);
 		
 		gbc.gridy=1;
-		gbc.gridx=0;
 		this.add(this.sequenceSelectors(), gbc);
 		
 		gbc.gridy=2;
-		gbc.gridx=0;
 		this.add(this.answerSelector(), gbc);
 		
 		gbc.gridy=3;
-		gbc.gridx=0;
 		this.add(this.addTestPanel(), gbc);
 	}
 
