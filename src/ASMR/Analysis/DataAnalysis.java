@@ -7,5 +7,6 @@ package ASMR.Analysis;
  */
 public interface DataAnalysis {
 
+	// Perform data analysis using R
 	RAnalysis rAnalysis = new RAnalysis();
 }
