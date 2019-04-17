@@ -513,6 +513,49 @@ public class TestGenerationPanel extends AbstractPanel{
 		return panel;
 	}
 	
+	/**
+	 * builds a sub panel for the menu buttons
+	 * @return jpanel for menu buttons
+	 */
+	private JPanel menuButtonPanel() {
+		JPanel panel = new JPanel();
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.insets = new Insets(10, 10, 10, 10);
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		//save file button
+		JButton saveFileButton = new JButton("Save Tests");
+		saveFileButton.setFont(this.buttonFont);
+		saveFileButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(CreateTestFiles.proxyGetNumTests()==0) {
+					new ErrorWindow("Not tests have been generated");
+				}else {
+					AbstractPanel.getFrame().changePanel(new SaveTestFilePanel());
+				}
+			}
+		});
+		
+		//return to main panel
+		JButton returnButton = new JButton("Return");
+		returnButton.setFont(this.buttonFont);
+		returnButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AbstractPanel.getFrame().changePanel(new MainPanel());
+			}
+		});
+		
+		gbc.gridx=0;
+		panel.add(saveFileButton, gbc);
+		
+		gbc.gridx=2;
+		panel.add(returnButton, gbc);
+		
+		return panel;
+	}
+	
 	@Override
 	public void buildPanel() {
 		this.setLayout(new GridBagLayout());
@@ -531,6 +574,9 @@ public class TestGenerationPanel extends AbstractPanel{
 		
 		gbc.gridy=3;
 		this.add(this.addTestPanel(), gbc);
+		
+		gbc.gridy=4;
+		this.add(this.menuButtonPanel(), gbc);
 	}
 
 }
