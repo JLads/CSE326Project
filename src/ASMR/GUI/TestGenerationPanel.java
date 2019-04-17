@@ -450,6 +450,10 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//label for showing number of tests
+		JLabel numTests = new JLabel("Number of generated Tests: "+CreateTestFiles.proxyGetNumTests());
+		numTests.setFont(this.labelFont);
+		
 		//button for generating a test from input
 		JButton addTest = new JButton("Add Test");
 		addTest.setFont(this.buttonFont);
@@ -458,6 +462,7 @@ public class TestGenerationPanel extends AbstractPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(checkParams()) {
 					CreateTestFiles.proxyAddTest(directory, seq1, seq2, answer);
+					numTests.setText("Number of generated Tests: "+CreateTestFiles.proxyGetNumTests());
 					for(JFileChooser jfc : fileChoosers) {
 						jfc.setCurrentDirectory(new File(directory));
 						jfc.setSelectedFile(null);
@@ -473,9 +478,11 @@ public class TestGenerationPanel extends AbstractPanel{
 			}
 		});
 		
-		gbc.gridy=0;
 		gbc.gridx=0;
 		panel.add(addTest, gbc);
+		
+		gbc.gridx=1;
+		panel.add(numTests, gbc);
 		
 		return panel;
 	}
