@@ -36,7 +36,6 @@ public class RAnalysis {
 		if (windowsRPath == null) {
 			throw new FileNotFoundException("Unable to find file path to R executable");
 		}	
-		
 		return windowsRPath;
 	}
 
@@ -45,30 +44,29 @@ public class RAnalysis {
 	 * @return The file path of the Rscript executable on Linux as a string
 	 */
 	private static String getLinuxRPath() {
-		return "/usr/bin/Rscript";
+		return "/usr/bin";
 	}
 
 	/**
 	 * Gets the platform-dependent file path of the "Rscript" executable
 	 * @return The string representation of the Rscript file path
 	 */
-	private static String getRPath() {
+	public static String getRScriptCommand() {
 		String OSName = System.getProperty("os.name").toLowerCase();
-		String RPath = null;
+		String rCommand = null;
 		if (OSName.contains("windows")) {
 			try {
-				RPath = getWindowsRPath();
+				rCommand = getWindowsRPath() + "\\bin\\Rscript.exe";
 			}
 			catch (FileNotFoundException fnfe) {
 				fnfe.printStackTrace();
 			}
 		} else if (OSName.contains("linux")) {
-			RPath = getLinuxRPath();
+			rCommand = getLinuxRPath() + "/Rscript";
 		} else {
 			throw new RuntimeException("Unsupported Operating System: " + OSName);
 		}
-		
-		return RPath;
+		return rCommand;
 	}
 
 	/**
@@ -76,14 +74,15 @@ public class RAnalysis {
 	 * @param rScript Absolute path of the R script to run
 	 * @return The output of the R script as a BufferedOutput object
 	 */
-	private static BufferedReader runRScript(String rScript) {
+	public static BufferedReader runRScript(String rScript) {
 
 		Process rChild;
 		BufferedReader rOutput = null;
+		String rScriptCommand = null;
+
 		try {
-			String rScriptCommandPath = getRPath();
-			
-			rChild = Runtime.getRuntime().exec(rScriptCommandPath + " " + rScript, null, new File(rScript).getParentFile());
+			rScriptCommand = getRScriptCommand();
+			rChild = new ProcessBuilder(rScriptCommand, rScript).start();
 			int exitCode = rChild.waitFor();
 
 			if (exitCode == 0) {
@@ -95,7 +94,8 @@ public class RAnalysis {
 			}
 		}
 		catch (IOException ioe) {
-			throw new IllegalArgumentException("Sound file missing or corrupted: " + rScript);
+			ioe.printStackTrace();
+			throw new IllegalArgumentException("Unable to execute command: " + rScriptCommand);
 		}
 		catch (InterruptedException ie) {
 			System.err.println("Critical error: " + ie.getMessage());
