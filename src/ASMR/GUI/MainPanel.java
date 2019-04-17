@@ -71,8 +71,7 @@ public class MainPanel extends AbstractPanel {
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement sequence creation panel
-				new WIPWindow();
+				AbstractPanel.getFrame().changePanel(new TestGenerationPanel());
 			}
 		});
 		gbc.gridy = 2;

@@ -1,5 +1,7 @@
 package ASMR.GUI;
 
+import ASMR.Data.CreateTestFiles;
+
 /**
  * a panel for saving a test file
  * @author nicholas
@@ -19,9 +21,9 @@ public class SaveTestFilePanel extends AbstractFileIOPanel{
 
 	@Override
 	public void processFilepath(String fp) {
-		// TODO call function for saving test file
-		System.out.println(fp);
-		new WIPWindow();
+		CreateTestFiles.proxySaveTests(fp);
+		CreateTestFiles.proxyClear();
+		AbstractPanel.getFrame().changePanel(new TestGenerationPanel());
 	}
 
 }

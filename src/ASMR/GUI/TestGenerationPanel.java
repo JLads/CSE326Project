@@ -487,6 +487,7 @@ public class TestGenerationPanel extends AbstractPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkParams()) {
+					//printParams();
 					CreateTestFiles.proxyAddTest(directory, seq1, seq2, answer);
 					numTests.setText("Number of generated Tests: "+CreateTestFiles.proxyGetNumTests());
 					for(JFileChooser jfc : fileChoosers) {
@@ -550,7 +551,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.gridx=0;
 		panel.add(saveFileButton, gbc);
 		
-		gbc.gridx=2;
+		gbc.gridx=1;
 		panel.add(returnButton, gbc);
 		
 		return panel;
