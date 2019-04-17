@@ -24,8 +24,8 @@ public class RunTestPanel extends AbstractPanel {
 
 	private static final long serialVersionUID = -3562232664994471584L;
 
-	private int numTests;		//the number of sequences to test
-	private int finTests = 0;	//the number of sequences that have been tested
+	private int numTests;		//the total number of tests
+	private int finTests = 0;	//the number of tests that have been completed
 	
 	/**
 	 * constructor
