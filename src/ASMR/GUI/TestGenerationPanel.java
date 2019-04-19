@@ -68,22 +68,25 @@ public class TestGenerationPanel extends AbstractPanel{
 	 */
 	private JPanel buildDirectorySelector() {
 		JPanel panel = new JPanel();
-		
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//label for directory selector
 		JLabel label = new JLabel("Directory:");
 		label.setFont(this.labelFont);
 		
+		//file chooser for directory
 		JFileChooser chooser = new JFileChooser();
 		chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
+		//text area for directory
 		JTextArea text = new JTextArea(this.directory);
 		text.setFont(this.labelFont);
 		text.setEditable(false);
 		
+		//browse button for directory
 		JButton browse = new JButton("Browse");
 		browse.setFont(this.buttonFont);
 		browse.addActionListener(new ActionListener() {
@@ -133,7 +136,6 @@ public class TestGenerationPanel extends AbstractPanel{
 	 */
 	private JPanel buildSequenceSelector(ArrayList<String> seq) {
 		JPanel panel = new JPanel();
-		
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(10, 10, 10, 10);
@@ -426,6 +428,7 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * @return boolean true or false
 	 */
 	private boolean checkParams() {
+		//check files in sequence 1
 		for (String s : this.seq1) {
 			if(s==null) {
 				new ErrorWindow("All files must be selected");
@@ -436,6 +439,8 @@ public class TestGenerationPanel extends AbstractPanel{
 				return false;
 			}
 		}
+		
+		//check files in sequence 2
 		for (String s : this.seq2) {
 			if(s==null) {
 				new ErrorWindow("All files must be selected");
@@ -446,9 +451,13 @@ public class TestGenerationPanel extends AbstractPanel{
 				return false;
 			}
 		}
+		
+		//check directory
 		if(this.directory.contains(",")) {
 			new ErrorWindow("Directory path can not contain commas: "+this.directory);
 		}
+		
+		//check that files in sequence 1 and 2 are in directory
 		File dir = new File(this.directory);
 		for (String s : this.seq1) {
 			if(!Arrays.asList(dir.list()).contains(s)) {
@@ -462,6 +471,8 @@ public class TestGenerationPanel extends AbstractPanel{
 				return false;
 			}
 		}
+		
+		//all inputs are valid
 		return true;
 	}
 	
@@ -469,10 +480,10 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * a print method for testing
 	 */
 	public void printParams() {
-		System.out.println(directory);
-		System.out.println(seq1.toString());
-		System.out.println(seq2.toString());
-		System.out.println(answer.toString());
+		System.out.println(this.directory);
+		System.out.println(this.seq1.toString());
+		System.out.println(this.seq2.toString());
+		System.out.println(this.answer.toString());
 	}
 	
 	/**
@@ -574,18 +585,23 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.insets = new Insets(10, 10, 10, 10);
 		gbc.fill = GridBagConstraints.BOTH;
 		
+		//directory selection field
 		gbc.gridy=0;
 		this.add(this.buildDirectorySelector(), gbc);
 		
+		//sequence selection fields
 		gbc.gridy=1;
 		this.add(this.sequenceSelectors(), gbc);
 		
+		//answer selection field
 		gbc.gridy=2;
 		this.add(this.answerSelector(), gbc);
 		
+		//add test and test count field
 		gbc.gridy=3;
 		this.add(this.addTestPanel(), gbc);
 		
+		//save and return field
 		gbc.gridy=4;
 		this.add(this.menuButtonPanel(), gbc);
 	}

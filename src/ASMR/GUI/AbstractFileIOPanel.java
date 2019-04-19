@@ -62,7 +62,6 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 			}
 		}else {
 			if(!fp.contains(".csv")) {
-				System.out.println("here");
 				fp=fp+".csv";
 			}
 		}
@@ -94,6 +93,7 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		
 		//text area for file path
 		JTextArea text = new JTextArea(this.filePath);
+		text.setEditable(false);
 		text.setFont(new Font("Aerial", Font.PLAIN, 15));
 		text.addKeyListener(new KeyListener() {
 			@Override
