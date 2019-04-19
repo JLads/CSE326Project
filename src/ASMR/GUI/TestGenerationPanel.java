@@ -426,28 +426,39 @@ public class TestGenerationPanel extends AbstractPanel{
 	 * @return boolean true or false
 	 */
 	private boolean checkParams() {
-		for (String s : seq1) {
+		for (String s : this.seq1) {
 			if(s==null) {
 				new ErrorWindow("All files must be selected");
 				return false;
 			}
+			if(s.contains(",")) {
+				new ErrorWindow("File name can not contain commas: "+s);
+				return false;
+			}
 		}
-		for (String s : seq2) {
+		for (String s : this.seq2) {
 			if(s==null) {
 				new ErrorWindow("All files must be selected");
 				return false;
 			}
-		}
-		File dir = new File(directory);
-		for (String s : seq1) {
-			if(!Arrays.asList(dir.list()).contains(s)) {
-				new ErrorWindow("Wav file was not found in directory:"+s+"; "+directory);
+			if(s.contains(",")) {
+				new ErrorWindow("File name can not contain commas: "+s);
 				return false;
 			}
 		}
-		for (String s : seq2) {
+		if(this.directory.contains(",")) {
+			new ErrorWindow("Directory path can not contain commas: "+this.directory);
+		}
+		File dir = new File(this.directory);
+		for (String s : this.seq1) {
 			if(!Arrays.asList(dir.list()).contains(s)) {
-				new ErrorWindow("Wav file was not found in directory:"+s+"; "+directory);
+				new ErrorWindow("Wav file was not found in directory: "+s+"; "+this.directory);
+				return false;
+			}
+		}
+		for (String s : this.seq2) {
+			if(!Arrays.asList(dir.list()).contains(s)) {
+				new ErrorWindow("Wav file was not found in directory: "+s+"; "+this.directory);
 				return false;
 			}
 		}
