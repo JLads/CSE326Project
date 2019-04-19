@@ -16,4 +16,3 @@ final.score = tail(test.results$Points, n = 1)
 
 cat("ProportionCorrect:", prop.correct, "\n", sep = "")
 cat("FinalScore:", final.score, "\n", sep = "")
-
