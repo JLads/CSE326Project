@@ -1,5 +1,6 @@
 package ASMR.Analysis;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +15,21 @@ import ASMR.Util.RegistryStreamEater;
  */
 public class RAnalysis {
 
+	private final String scriptPath;
+	private final String scoreScriptPath;
+	
+	public RAnalysis() {
+
+		scriptPath = String.join(File.separator, System.getProperty("user.dir"),
+				"ASMR", "Analysis", "RScripts");
+		scoreScriptPath = String.join(File.separator, scriptPath, "score.r");
+	}
+
 	/**
 	 * Obtains and returns the Windows-specific file path of the Rscript executable
 	 * @return The file path of the Rscript executable on Windows as a string
 	 */
-	private static String getWindowsRPath() throws FileNotFoundException {
+	private String getWindowsRPath() throws FileNotFoundException {
 
 		String windowsRPath = null;
 
@@ -42,7 +53,8 @@ public class RAnalysis {
 	 * Returns the Linux-specific file path of the Rscript executable
 	 * @return The file path of the Rscript executable on Linux as a string
 	 */
-	private static String getLinuxRPath() {
+	private String getLinuxRPath() {
+
 		return "/usr/bin";
 	}
 
@@ -50,9 +62,11 @@ public class RAnalysis {
 	 * Gets the platform-dependent file path of the "Rscript" executable
 	 * @return The string representation of the Rscript file path
 	 */
-	private static String getRScriptCommand() {
+	private String getRScriptCommand() {
+
 		String OSName = System.getProperty("os.name").toLowerCase();
 		String rCommand = null;
+
 		if (OSName.contains("windows")) {
 			try {
 				rCommand = getWindowsRPath() + "\\bin\\Rscript.exe";
@@ -73,7 +87,7 @@ public class RAnalysis {
 	 * @param rScript Absolute path of the R script to run
 	 * @return The output of the R script as a BufferedOutput object
 	 */
-	private static BufferedReader runRScript(String rScript) {
+	private BufferedReader runRScript(String rScript, String dataFile) {
 
 		Process rChild;
 		BufferedReader rOutput = null;
@@ -81,7 +95,7 @@ public class RAnalysis {
 
 		try {
 			rScriptCommand = getRScriptCommand();
-			rChild = new ProcessBuilder(rScriptCommand, rScript).start();
+			rChild = new ProcessBuilder(rScriptCommand, rScript, dataFile).start();
 			int exitCode = rChild.waitFor();
 
 			if (exitCode == 0) {
@@ -100,5 +114,25 @@ public class RAnalysis {
 			System.err.println("Critical error: " + ie.getMessage());
 		}
 		return rOutput;
+	}
+	
+	/**
+	 * Run an R script to compute the number of correct answers divided by the number of total answers
+	 * as well as tracking the score differential between tests
+	 *  
+	 * @param dataFile The path to the data file to analyze
+	 * @return A BufferedReader object containing the R script's output
+	 */
+	public BufferedReader runScoreScript(String dataFile) {
+		
+		BufferedReader result = null;
+
+		try {
+			result = runRScript(scoreScriptPath, dataFile);
+		}
+		catch (IllegalArgumentException iae) {
+			System.err.println(iae.getMessage());
+		}
+		return result;
 	}
 }
