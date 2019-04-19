@@ -83,6 +83,11 @@ public class RunTestPanel extends AbstractPanel {
 					}
 					if(i!=2) {
 						try {
+							/*
+							 * ATTENTION
+							 * change line of code below to change the delay between sequences
+							 * for time increments less than a second, change SECONDS to either MICROSECONDS, MILLISECONDS, NANOSECONDS
+							 * */
 							TimeUnit.SECONDS.sleep(2);
 						} catch (InterruptedException e1) {
 							e1.printStackTrace();
