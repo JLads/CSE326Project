@@ -565,6 +565,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		returnButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				CreateTestFiles.proxyClear();
 				AbstractPanel.getFrame().changePanel(new MainPanel());
 			}
 		});
