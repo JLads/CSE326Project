@@ -72,7 +72,11 @@ public class TestLogger{
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
-		calcPoints("yes", ans);
+		if(ans.contentEquals("yes")) {
+			logPoints(3);
+		} else {
+			logPoints(2);
+		}
 		pointTotal.add(points);
 	}
 	
@@ -87,20 +91,39 @@ public class TestLogger{
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
-		calcPoints("no", ans);
+		if(ans.contentEquals("yes")) {
+			logPoints(1);
+		} else {
+			logPoints(4);
+		}
 		pointTotal.add(points);
 	}
 	
+	
 	/**
-	 * compares user response to correct answer to calculate points
-	 * @param response Test subject response as a string
-	 * @param correct Correct response for the current test as a string
+	 * Logs point values based on user response and correct answers
+	 * @param type Error identifier as an Integer
 	 */
-	private void calcPoints(String response, String correct) {
-		if (response.contentEquals(correct)) {
-			points += 10;
-		} else {
+	private void logPoints(int type) {
+		switch(type) {
+		case 1: //Incorrect Answer
+			//Subject No, Actually Yes
 			points -= 5;
+			break;
+		case 2: //Incorrect Answer
+			//Subject Yes, Actually No
+			points -= 5;
+			break;
+		case 3: //Correct Answer
+			//Subject Yes, Actually Yes
+			points += 10;
+			break;
+		case 4: //Correct Answer
+			//Subject No, Actually No
+			points += 10;
+		default:
+			System.out.println("Error: Invalid Point Option");
+			break;
 		}
 	}
 	
