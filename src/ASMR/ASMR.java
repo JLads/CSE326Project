@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import ASMR.GUI.MainFrame;
 import ASMR.GUI.MainPanel;
@@ -25,13 +26,15 @@ public class ASMR implements UncaughtExceptionHandler, WindowListener {
 	public static void main(String args[]) {new ASMR();}
 	
 	/**
-		//instantiate the data interfaces?
-	*/
+	 * initialize gui and run application
+	 */
 	private ASMR() {
 		Thread.setDefaultUncaughtExceptionHandler(this);
 
 		//establish graphics environment and establish window
 		GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		
+		UIManager.put("FileChooser.readOnly", Boolean.TRUE);
 		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
