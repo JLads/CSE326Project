@@ -119,7 +119,7 @@ public class RAnalysis {
 	private void assignResults(BufferedReader results, AnalysisResults resultsContainer) {
 		
 		try {
-			for (String line = results.readLine(); results != null; line = results.readLine()) {
+			for (String line = results.readLine(); line != null; line = results.readLine()) {
 				String[] resultPair = line.split(":");
 				String label = resultPair[0];
 				String value = resultPair[1];
