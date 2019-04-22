@@ -36,9 +36,7 @@ public class AnalysisResults {
 	}
 	
 	public void writeAnalysisResults(String resultsPath) {
-		String dataFileName = dataFile.substring(dataFile.lastIndexOf(File.separator) + 1, dataFile.lastIndexOf('.'));
-		
-		File resultsFile = new File(String.join(File.separator, dataFileName, "_analysis_results.txt"));
+		File resultsFile = new File(resultsPath);
 		
 		if (resultsFile.exists()) {
 			resultsFile.delete();
