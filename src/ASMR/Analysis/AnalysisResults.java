@@ -44,9 +44,10 @@ public class AnalysisResults {
 		
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(resultsFile));
-			writer.append("Data File: " + dataFile);
-			writer.append("Subject Final Score: " + finalScore);
-			writer.append("Proportion Answers Correct: " + proportionCorrect);
+			String nl = System.getProperty("line.separator");
+			writer.append("Data File: " + dataFile + nl);
+			writer.append("Subject Final Score: " + finalScore + nl);
+			writer.append("Proportion Answers Correct: " + proportionCorrect + nl);
 			writer.close();
 		}
 		catch (IOException ioe) {
