@@ -122,28 +122,32 @@ public class TestLogger{
 	 */
 	private void logPoints(responseType type) {
 		/*
+		 * ALERT
+		 * add new arrays here for different point scales. Name them the same and comment in only one.
+		 * ALERT
 		 * point set arrays format as follows
-		 * correct same value, correct diff value, incorrect same value, incorrect diff value
+		 * {correct same value, correct diff value, incorrect same value, incorrect diff value}
 		 */
-		int[] pointTable = {10, 10, -5, -5};			//Baseline point table
-		//int[] pointTable = {10, 8, -8, -6};			//Incentivize fewer false detection of differences
+		//int[] pointTable = {10, 10, -5, -5};			//Baseline point table
+		int[] pointTable = {10, 8, -8, -6};			//Incentivize fewer false detection of differences
 		//int[] pointTable = {8, 10, -6, -8};			//Bias towards detecting differences
+		
 		
 		if(type == responseType.correctSame) {
 			//correct id of same sequences
-			points += pointTable[1];
+			points += pointTable[0];
 			
 		} else if(type == responseType.correctDiff) {
 			//correct id of different sequences
-			points += pointTable[2];
+			points += pointTable[1];
 			
 		} else if(type == responseType.wrongSame) {
 			//wrong id of same sequences
-			points += pointTable[3];
+			points += pointTable[2];
 			
 		} else if(type == responseType.wrongDiff) {
 			//wrong id of different sequences
-			points += pointTable[4];
+			points += pointTable[3];
 			
 		}
 		
