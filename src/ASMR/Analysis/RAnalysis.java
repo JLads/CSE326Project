@@ -116,6 +116,31 @@ public class RAnalysis {
 		return rOutput;
 	}
 	
+	private void assignResults(BufferedReader results, AnalysisResults resultsContainer) {
+		
+		try {
+			for (String line = results.readLine(); results != null; line = results.readLine()) {
+				String[] resultPair = line.split(":");
+				String label = resultPair[0];
+				String value = resultPair[1];
+
+				switch (label) {
+				case "ProportionCorrect":
+					resultsContainer.setProportionCorrect(new Double(value));
+					break;
+				case "FinalScore":
+					resultsContainer.setFinalScore(new Integer(value));
+					break;
+				default:
+					throw new IllegalArgumentException("Invalid or unimplemented statistic: " + label);
+				}
+			}
+		}
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Run an R script to compute the number of correct answers divided by the number of total answers
 	 * as well as tracking the score differential between tests
@@ -123,16 +148,26 @@ public class RAnalysis {
 	 * @param dataFile The path to the data file to analyze
 	 * @return A BufferedReader object containing the R script's output
 	 */
-	public BufferedReader runScoreScript(String dataFile) {
+	private void runScoreScript(String dataFile, AnalysisResults analysisResults) {
 		
-		BufferedReader result = null;
+		BufferedReader scoreResults = null;
 
 		try {
-			result = runRScript(scoreScriptPath, dataFile);
+			scoreResults = runRScript(scoreScriptPath, dataFile);
 		}
 		catch (IllegalArgumentException iae) {
 			System.err.println(iae.getMessage());
 		}
-		return result;
+		
+		assignResults(scoreResults, analysisResults);
+	}
+	
+	public AnalysisResults runAnalysis(String dataFile) {
+		
+		AnalysisResults analysisResults = new AnalysisResults();
+		
+		runScoreScript(dataFile, analysisResults);
+		
+		return analysisResults;
 	}
 }

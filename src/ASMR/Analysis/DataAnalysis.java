@@ -1,6 +1,5 @@
 package ASMR.Analysis;
 
-import java.io.BufferedReader;
 
 /**
  * An interface for performing data analysis with R
@@ -12,7 +11,7 @@ public interface DataAnalysis {
 	// Perform data analysis using R
 	RAnalysis rAnalysis = new RAnalysis();
 	
-	public static BufferedReader proxyRunScoreAnalysis(String dataFile) {
-		return rAnalysis.runScoreScript(dataFile);
+	public static AnalysisResults proxyRunAnalysis(String dataFile) {
+		return rAnalysis.runAnalysis(dataFile);
 	}
 }

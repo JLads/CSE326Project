@@ -4,7 +4,8 @@ data.file.name = sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(data.
 test.file = readLines(data.file, n = 1)
 test.results = read.csv(data.file, skip = 1)
 
-plot.path = paste(dirname(data.file), "plot.png", sep="/")
+plot.file.name = paste(data.file.name, "score.png", sep = "_")
+plot.path = paste(dirname(data.file), plot.file.name, sep="/")
 plot.title = paste(data.file.name, "Score over Tests")
 
 png(plot.path)
