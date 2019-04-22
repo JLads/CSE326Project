@@ -15,6 +15,10 @@ import ASMR.Util.CSVIO;
  */
 public class TestLogger{
 	
+	private static enum responseType{
+		correctSame, correctDiff, wrongSame, wrongDiff
+	}
+	
 	private static ArrayList<String> response = null;		//list of user responses
 	private static ArrayList<String> correct = null;		//list of correct answers
 	private static ArrayList<Integer> pairId = null;		//list of test numbers
@@ -68,14 +72,19 @@ public class TestLogger{
 	 * @param ans string containing correct response
 	 */
 	public void logYes(String ans) {
+		responseType type;
 		pairNum++;
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
 		if(ans.contentEquals("yes")) {
-			logPoints(3);
+			//correct same
+			type = responseType.correctSame;
+			logPoints(type);
 		} else {
-			logPoints(2);
+			//incorrect different
+			type = responseType.wrongDiff;
+			logPoints(type);
 		}
 		pointTotal.add(points);
 	}
@@ -87,14 +96,19 @@ public class TestLogger{
 	 * @param ans string containing correct response
 	 */
 	public void logNo(String ans) {
+		responseType type;
 		pairNum++;
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
-		if(ans.contentEquals("yes")) {
-			logPoints(1);
+		if(ans.contentEquals("no")) {
+			//Correct different
+			type = responseType.correctDiff;
+			logPoints(type);
 		} else {
-			logPoints(4);
+			//incorrect same
+			type = responseType.wrongSame;
+			logPoints(type);
 		}
 		pointTotal.add(points);
 	}
@@ -102,29 +116,37 @@ public class TestLogger{
 	
 	/**
 	 * Logs point values based on user response and correct answers
-	 * @param type Error identifier as an Integer
+	 * Multiple different point value lists are possible.
+	 * They are defined as arrays called pointTable[]. Comment in the one to be active
+	 * @param type Response:correct pair defined as an enumerated type.
 	 */
-	private void logPoints(int type) {
-		switch(type) {
-		case 1: //Incorrect Answer
-			//Subject No, Actually Yes
-			points -= 5;
-			break;
-		case 2: //Incorrect Answer
-			//Subject Yes, Actually No
-			points -= 5;
-			break;
-		case 3: //Correct Answer
-			//Subject Yes, Actually Yes
-			points += 10;
-			break;
-		case 4: //Correct Answer
-			//Subject No, Actually No
-			points += 10;
-		default:
-			System.out.println("Error: Invalid Point Option");
-			break;
+	private void logPoints(responseType type) {
+		/*
+		 * point set arrays format as follows
+		 * correct same value, correct diff value, incorrect same value, incorrect diff value
+		 */
+		int[] pointTable = {10, 10, -5, -5};			//Baseline point table
+		//int[] pointTable = {10, 8, -8, -6};			//Incentivize fewer false detection of differences
+		//int[] pointTable = {8, 10, -6, -8};			//Bias towards detecting differences
+		
+		if(type == responseType.correctSame) {
+			//correct id of same sequences
+			points += pointTable[1];
+			
+		} else if(type == responseType.correctDiff) {
+			//correct id of different sequences
+			points += pointTable[2];
+			
+		} else if(type == responseType.wrongSame) {
+			//wrong id of same sequences
+			points += pointTable[3];
+			
+		} else if(type == responseType.wrongDiff) {
+			//wrong id of different sequences
+			points += pointTable[4];
+			
 		}
+		
 	}
 	
 	/**
