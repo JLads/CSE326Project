@@ -87,7 +87,7 @@ public class RAnalysis {
 	 * @param rScript Absolute path of the R script to run
 	 * @return The output of the R script as a BufferedOutput object
 	 */
-	private BufferedReader runRScript(String rScript, String dataFile) {
+	private BufferedReader runRScript(String rScript, String dataFile, String resultsPath) {
 
 		Process rChild;
 		BufferedReader rOutput = null;
@@ -95,7 +95,7 @@ public class RAnalysis {
 
 		try {
 			rScriptCommand = getRScriptCommand();
-			rChild = new ProcessBuilder(rScriptCommand, rScript, dataFile).start();
+			rChild = new ProcessBuilder(rScriptCommand, rScript, dataFile, resultsPath).start();
 			int exitCode = rChild.waitFor();
 
 			if (exitCode == 0) {
@@ -148,12 +148,12 @@ public class RAnalysis {
 	 * @param dataFile The path to the data file to analyze
 	 * @return A BufferedReader object containing the R script's output
 	 */
-	private void runScoreScript(String dataFile, AnalysisResults analysisResults) {
+	private void runScoreScript(String dataFile, AnalysisResults analysisResults, String resultsPath) {
 		
 		BufferedReader scoreResults = null;
 
 		try {
-			scoreResults = runRScript(scoreScriptPath, dataFile);
+			scoreResults = runRScript(scoreScriptPath, dataFile, resultsPath);
 		}
 		catch (IllegalArgumentException iae) {
 			System.err.println(iae.getMessage());
@@ -162,11 +162,11 @@ public class RAnalysis {
 		assignResults(scoreResults, analysisResults);
 	}
 	
-	public AnalysisResults runAnalysis(String dataFile) {
+	public AnalysisResults runAnalysis(String dataFile, String analysisResultsPath) {
 		
-		AnalysisResults analysisResults = new AnalysisResults();
+		AnalysisResults analysisResults = new AnalysisResults(dataFile);
 		
-		runScoreScript(dataFile, analysisResults);
+		runScoreScript(dataFile, analysisResults, analysisResultsPath);
 		
 		return analysisResults;
 	}
