@@ -74,7 +74,7 @@ public class TestGenerationPanel extends AbstractPanel{
 		gbc.fill = GridBagConstraints.BOTH;
 		
 		//label for directory selector
-		JLabel label = new JLabel("Directory:");
+		JLabel label = new JLabel("WAV file directory:");
 		label.setFont(this.labelFont);
 		
 		//file chooser for directory

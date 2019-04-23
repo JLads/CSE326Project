@@ -44,8 +44,8 @@ public class StartTestPanel extends AbstractPanel{
 		text.setText("Directions for the test:\n"
 				+ "Press the 'Play Audio' button to play two sequences of audio clips,\n"
 				+ "Press the 'Yes' or 'No' button if you believe the sequences are the same.\n"
-				+ "10 points will be rewarded for correct answers.\n"
-				+ "5 points will be deducted for incorrect answers.\n"
+				+ "points will be rewarded for correct answers.\n"
+				+ "points will be deducted for incorrect answers.\n"
 				+ "When you are ready, press the button below to start the test.");
 		gbc.gridx=0;
 		gbc.gridy=0;
