@@ -35,7 +35,6 @@ public class LoadTestFilePanel extends AbstractFileIOPanel{
 		});
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridy=3;
-		gbc.ipadx=501;
 		this.add(returnButton, gbc);
 	}
 
