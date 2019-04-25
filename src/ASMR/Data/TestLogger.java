@@ -15,6 +15,38 @@ import ASMR.Util.CSVIO;
  */
 public class TestLogger{
 	
+	/**
+	 * Enumerated type for Response point calculation
+	 * Modeled after Stack Overflow example found here:
+	 * https://stackoverflow.com/questions/3990319/storing-integer-values-as-constants-in-enum-manner-in-java
+	 * @author Joseph
+	 */
+	private static enum responseType{
+		/**
+		 * ATTENTION
+		 * to set custom point values change the numbers here.
+		 * answerType(xx) where "xx" is the point value assigned to the answer type.
+		 */
+		correctSame(10), 
+		correctDiff(10), 
+		wrongSame(-5), 
+		wrongDiff(-5);
+		/**
+		 * ATTENTION
+		 * to set custom point values see above comments.
+		 */
+		
+		private final int value;
+		responseType(final int newValue){
+			value = newValue;
+		}
+		
+		public int getValue() {
+			return value;
+		}
+		
+	}
+	
 	private static ArrayList<String> response = null;		//list of user responses
 	private static ArrayList<String> correct = null;		//list of correct answers
 	private static ArrayList<Integer> pairId = null;		//list of test numbers
@@ -68,11 +100,20 @@ public class TestLogger{
 	 * @param ans string containing correct response
 	 */
 	public void logYes(String ans) {
+		responseType type;
 		pairNum++;
 		response.add("yes");
 		correct.add(ans);
 		pairId.add(pairNum);
-		calcPoints("yes", ans);
+		if(ans.contentEquals("yes")) {
+			//correct same
+			type = responseType.correctSame;
+			logPoints(type);
+		} else {
+			//incorrect different
+			type = responseType.wrongDiff;
+			logPoints(type);
+		}
 		pointTotal.add(points);
 	}
 	
@@ -83,25 +124,31 @@ public class TestLogger{
 	 * @param ans string containing correct response
 	 */
 	public void logNo(String ans) {
+		responseType type;
 		pairNum++;
 		response.add("no");
 		correct.add(ans);
 		pairId.add(pairNum);
-		calcPoints("no", ans);
+		if(ans.contentEquals("no")) {
+			//Correct different
+			type = responseType.correctDiff;
+			logPoints(type);
+		} else {
+			//incorrect same
+			type = responseType.wrongSame;
+			logPoints(type);
+		}
 		pointTotal.add(points);
 	}
 	
+	
 	/**
-	 * compares user response to correct answer to calculate points
-	 * @param response Test subject response as a string
-	 * @param correct Correct response for the current test as a string
+	 * Logs point values based on user response and correct answers
+	 * Point values are specified in the enumerated type responseType.
+	 * @param type Response:correct pair defined as an enumerated type.
 	 */
-	private void calcPoints(String response, String correct) {
-		if (response.contentEquals(correct)) {
-			points += 10;
-		} else {
-			points -= 5;
-		}
+	private void logPoints(responseType type) {
+		points += type.getValue();
 	}
 	
 	/**
