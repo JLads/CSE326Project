@@ -15,8 +15,36 @@ import ASMR.Util.CSVIO;
  */
 public class TestLogger{
 	
+	/**
+	 * Enumerated type for Response point calculation
+	 * Modeled after Stack Overflow example found here:
+	 * https://stackoverflow.com/questions/3990319/storing-integer-values-as-constants-in-enum-manner-in-java
+	 * @author Joseph
+	 */
 	private static enum responseType{
-		correctSame, correctDiff, wrongSame, wrongDiff
+		/**
+		 * ATTENTION
+		 * to set custom point values change the numbers here.
+		 * answerType(xx) where "xx" is the point value assigned to the answer type.
+		 */
+		correctSame(10), 
+		correctDiff(10), 
+		wrongSame(-5), 
+		wrongDiff(-5);
+		/**
+		 * ATTENTION
+		 * to set custom point values see above comments.
+		 */
+		
+		private final int value;
+		responseType(final int newValue){
+			value = newValue;
+		}
+		
+		public int getValue() {
+			return value;
+		}
+		
 	}
 	
 	private static ArrayList<String> response = null;		//list of user responses
@@ -116,41 +144,11 @@ public class TestLogger{
 	
 	/**
 	 * Logs point values based on user response and correct answers
-	 * Multiple different point value lists are possible.
-	 * They are defined as arrays called pointTable[]. Comment in the one to be active
+	 * Point values are specified in the enumerated type responseType.
 	 * @param type Response:correct pair defined as an enumerated type.
 	 */
 	private void logPoints(responseType type) {
-		/*
-		 * ALERT
-		 * add new arrays here for different point scales. Name them the same and comment in only one.
-		 * ALERT
-		 * point set arrays format as follows
-		 * {correct same value, correct diff value, incorrect same value, incorrect diff value}
-		 */
-		//int[] pointTable = {10, 10, -5, -5};			//Baseline point table
-		int[] pointTable = {10, 8, -8, -6};			//Incentivize fewer false detection of differences
-		//int[] pointTable = {8, 10, -6, -8};			//Bias towards detecting differences
-		
-		
-		if(type == responseType.correctSame) {
-			//correct id of same sequences
-			points += pointTable[0];
-			
-		} else if(type == responseType.correctDiff) {
-			//correct id of different sequences
-			points += pointTable[1];
-			
-		} else if(type == responseType.wrongSame) {
-			//wrong id of same sequences
-			points += pointTable[2];
-			
-		} else if(type == responseType.wrongDiff) {
-			//wrong id of different sequences
-			points += pointTable[3];
-			
-		}
-		
+		points += type.getValue();
 	}
 	
 	/**
