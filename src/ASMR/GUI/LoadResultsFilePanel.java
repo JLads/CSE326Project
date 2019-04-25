@@ -42,6 +42,7 @@ public class LoadResultsFilePanel extends AbstractFileIOPanel{
 	@Override
 	public void processFilepath(String fp) {
 		DataAnalysis.proxyRunAnalysis(fp, new File(fp).getParent());
+		AbstractPanel.getFrame().changePanel(new DataAnalysisPanel());
 	}
 	
 }
