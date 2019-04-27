@@ -130,6 +130,12 @@ public class RAnalysis {
 				String value = resultPair[1];
 
 				switch (label) {
+				case "TestFile":
+					resultsContainer.setTestFile(value);
+					break;
+				case "NumberTests":
+					resultsContainer.setNumberTests(new Integer(value));
+					break;
 				case "ProportionCorrect":
 					resultsContainer.setProportionCorrect(new Double(value));
 					break;
@@ -172,12 +178,10 @@ public class RAnalysis {
 	 * @param dataFile The data file to analyze in R
 	 * @param analysisResultsPath The path of the results file to write
 	 */
-	public AnalysisResults runAnalysis(String dataFile, String analysisResultsPath) {
+	public void runAnalysis(String dataFile, String analysisResultsPath) {
 		
 		AnalysisResults analysisResults = new AnalysisResults(dataFile);
 		runScoreScript(dataFile, analysisResults, analysisResultsPath);
 		analysisResults.writeAnalysisResults(analysisResultsPath);
-		
-		return analysisResults;
 	}
 }
