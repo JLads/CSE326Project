@@ -1,12 +1,9 @@
 package ASMR.GUI;
 
-import ASMR.Analysis.DataAnalysis;
-
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import javax.swing.JButton;
 
@@ -41,8 +38,7 @@ public class LoadResultsFilePanel extends AbstractFileIOPanel{
 
 	@Override
 	public void processFilepath(String fp) {
-		DataAnalysis.proxyRunAnalysis(fp, new File(fp).getParent());
-		AbstractPanel.getFrame().changePanel(new DataAnalysisPanel());
+		AbstractPanel.getFrame().changePanel(new AnalysisOutputFilePanel(fp));
 	}
 	
 }
