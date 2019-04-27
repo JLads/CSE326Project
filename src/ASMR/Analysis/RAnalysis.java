@@ -130,6 +130,9 @@ public class RAnalysis {
 				String value = resultPair[1];
 
 				switch (label) {
+				case "TestFile":
+					resultsContainer.setTestFile(value);
+					break;
 				case "ProportionCorrect":
 					resultsContainer.setProportionCorrect(new Double(value));
 					break;

@@ -11,7 +11,12 @@ public interface DataAnalysis {
 	// Perform data analysis using R
 	RAnalysis rAnalysis = new RAnalysis();
 	
-	public static void proxyRunAnalysis(String dataFile, String analysisResultsPath) {
-		rAnalysis.runAnalysis(dataFile, analysisResultsPath);
+	/**
+	 * Run analysis on a given data file, outputting to the specified analysis results file.
+	 * @param dataFile The data file to analyze
+	 * @param analysisResultsFile The file to output results to
+	 */
+	public static void proxyRunAnalysis(String dataFile, String analysisResultsFile) {
+		rAnalysis.runAnalysis(dataFile, analysisResultsFile);
 	}
 }
