@@ -25,6 +25,6 @@ prop.correct = length(test.results$Test.[test.results$Correct == test.results$Su
 final.score = tail(test.results$Points, n = 1)
 
 cat("TestFile:", test.file, "\n", sep = "")
-cat("NumberTests", num.tests, "\n", sep = "")
+cat("NumberTests:", num.tests, "\n", sep = "")
 cat("ProportionCorrect:", prop.correct, "\n", sep = "")
 cat("FinalScore:", final.score, "\n", sep = "")
