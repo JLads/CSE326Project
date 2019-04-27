@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * a panel for loading a results file
@@ -22,6 +23,8 @@ public class LoadResultsFilePanel extends AbstractFileIOPanel{
 	public LoadResultsFilePanel() {
 		this.panelLabel="Enter the file path for a Results file to load.";
 		this.buildPanel();
+
+		this.chooser.setFileFilter(new FileNameExtensionFilter("CSV FILE", "csv"));
 		
 		JButton returnButton = new JButton("Return");
 		returnButton.setFont(new Font("Aerial", Font.PLAIN, 20));

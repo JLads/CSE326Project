@@ -1,5 +1,7 @@
 package ASMR.GUI;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import ASMR.Data.ResultLogger;
 import ASMR.Data.TestRetriever;
 
@@ -18,6 +20,8 @@ public class SaveResultsFilePanel extends AbstractFileIOPanel {
 	public SaveResultsFilePanel() {
 		this.panelLabel = "Enter the file path for a Results file to save.";
 		this.buildPanel();
+
+		this.chooser.setFileFilter(new FileNameExtensionFilter("CSV FILE", "csv"));
 	}
 
 	@Override

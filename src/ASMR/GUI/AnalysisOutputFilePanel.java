@@ -1,5 +1,7 @@
 package ASMR.GUI;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import ASMR.Analysis.DataAnalysis;
 
 /**
@@ -21,6 +23,8 @@ public class AnalysisOutputFilePanel extends AbstractFileIOPanel {
 		this.resultsFile=fp;
 		this.panelLabel="Enter a file path to save results of analysis to.";
 		this.buildPanel();
+		
+		this.chooser.setFileFilter(new FileNameExtensionFilter("TEXT FILE", "txt"));
 	}
 
 	@Override
