@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import ASMR.Data.TestRetriever;
 
@@ -24,6 +25,8 @@ public class LoadTestFilePanel extends AbstractFileIOPanel{
 	public LoadTestFilePanel() {
 		this.panelLabel = "Enter the file path for a Test file to load.";
 		this.buildPanel();
+
+		this.chooser.setFileFilter(new FileNameExtensionFilter("CSV FILE", "csv"));
 		
 		JButton returnButton = new JButton("Return");
 		returnButton.setFont(new Font("Aerial", Font.PLAIN, 20));

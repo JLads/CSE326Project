@@ -27,6 +27,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	
 	protected String panelLabel = ""; // the label for a file io panel
 	
+	protected JFileChooser chooser = null; // the file chooser for the panel
+	
 	private String filePath = ""; // path to file chosen by user
 	
 	/**
@@ -41,8 +43,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 	 * @return path of f or null if error with f
 	 */
 	private String checkFilePath(String fp) {
-		//most of this is here due to the ability of a user to manually input a path rather than use the file browser
 		if((this instanceof LoadTestFilePanel)||(this instanceof LoadResultsFilePanel)) {
+			//check that a given file meets requirements for the panel
 			if(fp.length()==0) {
 				new ErrorWindow("File path can't be empty");
 				return null;
@@ -56,13 +58,16 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 				new ErrorWindow("File does not exist: "+fp);
 				return null;
 			}
-			if(!fp.contains(".csv")) {
-				new ErrorWindow("File must be a CSV: "+fp);
+			String extension = ((FileNameExtensionFilter)this.chooser.getFileFilter()).getExtensions()[0];
+			if(!fp.contains("."+extension)) {
+				new ErrorWindow("File must be a "+extension+": "+fp);
 				return null;
 			}
 		}else {
-			if(!fp.contains(".csv")) {
-				fp=fp+".csv";
+			//make sure that a file has the correct file extension
+			String extension = ((FileNameExtensionFilter)this.chooser.getFileFilter()).getExtensions()[0];
+			if(!fp.contains("."+extension)) {
+				fp=fp+"."+extension;
 			}
 		}
 		return fp;
@@ -86,10 +91,8 @@ public abstract class AbstractFileIOPanel extends AbstractPanel{
 		this.add(label, gbc);
 		
 		//file chooser
-		JFileChooser chooser = new JFileChooser();
-		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILE", "csv");
-		chooser.setFileFilter(filter);
+		this.chooser = new JFileChooser();
+		this.chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		
 		//text area for file path
 		JTextArea text = new JTextArea(this.filePath);
