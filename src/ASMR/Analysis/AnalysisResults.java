@@ -14,6 +14,7 @@ public class AnalysisResults {
 
 	private String dataFile;
 	private String testFile;
+	private int numberTests;
 	private int finalScore;
 	private double proportionCorrect;
 
@@ -28,13 +29,17 @@ public class AnalysisResults {
 	public void setTestFile(String testFile) {
 		this.testFile = testFile;
 	}
-
-	public void setProportionCorrect(double proportionCorrect) {
-		this.proportionCorrect = proportionCorrect;
+	
+	public void setNumberTests(int numberTests) {
+		this.numberTests = numberTests;
 	}
 
 	public void setFinalScore(int finalScore) {
 		this.finalScore = finalScore;
+	}
+
+	public void setProportionCorrect(double proportionCorrect) {
+		this.proportionCorrect = proportionCorrect;
 	}
 	
 	/**
@@ -53,6 +58,7 @@ public class AnalysisResults {
 			String nl = System.getProperty("line.separator");
 			writer.append("Test file: " + testFile + nl);
 			writer.append("Data File: " + dataFile + nl);
+			writer.append("Number of tests: " + numberTests + nl);
 			writer.append("Subject Final Score: " + finalScore + nl);
 			writer.append("Proportion Answers Correct: " + proportionCorrect + nl);
 			writer.close();

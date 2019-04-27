@@ -11,8 +11,9 @@ data.file.name = sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(data.
 
 test.file = readLines(data.file, n = 1)
 test.results = read.csv(data.file, skip = 1)
+num.tests = nrow(test.results)
 
-plot.file.name = paste(data.file.name, "score.png", sep = "_")
+plot.file.name = paste(data.file.name, "scores.png", sep = "_")
 plot.path = paste(dirname(results.file), plot.file.name, sep="/")
 plot.title = paste(data.file.name, "Score over Tests")
 
@@ -24,5 +25,6 @@ prop.correct = length(test.results$Test.[test.results$Correct == test.results$Su
 final.score = tail(test.results$Points, n = 1)
 
 cat("TestFile:", test.file, "\n", sep = "")
+cat("NumberTests", num.tests, "\n", sep = "")
 cat("ProportionCorrect:", prop.correct, "\n", sep = "")
 cat("FinalScore:", final.score, "\n", sep = "")

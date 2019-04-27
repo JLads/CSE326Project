@@ -133,6 +133,9 @@ public class RAnalysis {
 				case "TestFile":
 					resultsContainer.setTestFile(value);
 					break;
+				case "NumberTests":
+					resultsContainer.setNumberTests(new Integer(value));
+					break;
 				case "ProportionCorrect":
 					resultsContainer.setProportionCorrect(new Double(value));
 					break;
