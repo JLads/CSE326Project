@@ -7,11 +7,16 @@
 args = commandArgs(trailingOnly = T)
 data.file = args[1]
 results.file = args[2]
+data.file = gsub("\\\\", "/", data.file)
+results.file = gsub("\\\\", "/", results.file)
 data.file.name = sub(pattern = "(.*)\\..*$", replacement = "\\1", basename(data.file))
 
 test.file = readLines(data.file, n = 1)
 test.results = read.csv(data.file, skip = 1)
 num.tests = nrow(test.results)
+
+test.results$Correct = factor(test.results$Correct, levels=c("no", "yes"))
+test.results$Subject = factor(test.results$Subject, levels=c("no", "yes"))
 
 plot.file.name = paste(data.file.name, "scores.png", sep = "_")
 plot.path = paste(dirname(results.file), plot.file.name, sep="/")
