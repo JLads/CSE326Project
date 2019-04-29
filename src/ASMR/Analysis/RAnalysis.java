@@ -125,7 +125,7 @@ public class RAnalysis {
 		
 		try {
 			for (String line = results.readLine(); line != null; line = results.readLine()) {
-				String[] resultPair = line.split(":");
+				String[] resultPair = line.split("\\|");
 				String label = resultPair[0];
 				String value = resultPair[1];
 
