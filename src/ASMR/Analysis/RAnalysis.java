@@ -20,8 +20,7 @@ public class RAnalysis {
 	
 	public RAnalysis() {
 
-		scriptPath = String.join(File.separator, System.getProperty("user.dir"),
-				"src", "ASMR", "Analysis", "RScripts");
+		scriptPath = String.join(File.separator, System.getProperty("user.dir"), "scripts");
 		scoreScriptPath = String.join(File.separator, scriptPath, "score.r");
 	}
 
