@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 
 /**
  * A helper class for retrieving the R installation path from the registry on a Windows system
+ * Registry output parsing code adopted from https://github.com/yannrichet/rsession/blob/master/src/main/java/org/math/R/StartRserve.java
  * @author Steven Anaya
  *
  */
