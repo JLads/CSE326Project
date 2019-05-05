@@ -41,20 +41,20 @@ public class RegistryStreamEater extends Thread {
 
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
-			String line = null;
-			while ((line = br.readLine()) != null) {
-				int i = line.indexOf("InstallPath");
-				if (i >= 0) {
-					String s = line.substring(i + 11).trim();
-					int j = s.indexOf("REG_SZ");
-					if (j >= 0)
-						s = s.substring(j + 6).trim();
-					installPath = s;
+			for (String regLine = br.readLine(); regLine != null; regLine = br.readLine()) {
+				int installIndex = regLine.indexOf("InstallPath");
+				if (installIndex >= 0) {
+					String pathString = regLine.substring(installIndex + 11).trim();
+					int regIndex = pathString.indexOf("REG_SZ");
+					if (regIndex >= 0)
+						installPath = pathString.substring(regIndex + 6).trim();
+					else
+						installPath = pathString;
 				}
 			}
 		}
-		catch (IOException e) {
-			e.printStackTrace();
+		catch (IOException ioe) {
+			ioe.printStackTrace();
 		}
 	}
 }
