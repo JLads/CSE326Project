@@ -42,6 +42,7 @@ all: $(MAIN_JAR)
 # Make executable jar
 $(MAIN_JAR): $(MAIN_CLASS)
 	@$(JAR) $(JARFLAGS) "$(MAIN_JAR)" $(MAIN).$(MAIN) -C $(BUILD_DIR) .
+	@$(RM) $(BUILD_DIR)
 
 # Compile classes
 $(MAIN_CLASS): $(MAIN_JAVA)
@@ -50,5 +51,5 @@ $(MAIN_CLASS): $(MAIN_JAVA)
 
 .PHONY: clean
 clean:
-	$(RM) "$(MAIN_JAR)" "$(BUILD_DIR)"
+	$(RM) "$(MAIN_JAR)"
 
