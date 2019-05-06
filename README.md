@@ -1,5 +1,7 @@
 # Analysis of Serial Memory and Recognition (ASMR)
 ## Purpose
+This software was made for our Software Engineering course (CSE 326) at New Mexico Tech in Socorro, New Mexico, USA at the request of and with guidance from our customer, Dr. Taffetta Elliot with the Psychology department at the same institution.
+
 This software is an application to facilitate the testing of subjects' abilities to hear and recall auditory sequences and to analyze the subjects' test results using R. This software is portable to both Windows and Linux.
 
 Three primary services are provided by this software:
@@ -19,15 +21,15 @@ Run the command `make` from the terminal while inside the package root directory
 ## Application Usage
 
 ### On Windows
-Simply click on the `ASMR.jar` file in the package root directory. Alternatively, you can make a shortcut to the `.jar` file anywhere on your system and click on the shortcut instead.
+Simply click on the `ASMR.jar` file in the package root directory. Alternatively, you can also make a shortcut to the JAR file anywhere on your system and click on the shortcut instead.
 
 ### On Linux
-Run the command `java -jar ASMR.jar` from the terminal while inside the package root directory or enter `java -jar` as the default command to use on the file when you click on it. You can also create a symbolic link to the `.jar` file anywhere on your desktop using the command `ln -s` from the terminal.
+Run the command `java -jar ASMR.jar` from the terminal while inside the package root directory or set `java -jar` as the default command to use on the file when you click on it in a file manager. You can also create a symbolic link to the `.jar` file anywhere on your desktop using the command `ln -s` from the terminal.
 
 ### Test Creation
 Test creation is initiated by clicking the "Create Test File" button in the main menu. From there, a new screen will appear that contains several file selection fields. You will be asked to select a directory containing the audio files you wish to include in the testing set.
 
-After selecting this directory, you may select five of these files for each test sequence. The sequences may contain repitions, but must contain *exactly* five sequences. Under the sequence selection fields, there is a checkbox that is used to indicate whether or not the sequences are identical.
+After selecting this directory, you may select five of these files for each test sequence. The sequences may contain repitions, but must contain *exactly* five audio files. Under the sequence selection fields, there is a checkbox that is used to indicate whether or not the sequences are identical.
 
 After filling in each sequence, you may then click "Add Test" to add the sequence pair to the testing set. You may add as many tests as you like. When done, click "Save Test File" and select a directory path and file name to save the testing configuration to the hard drive as a CSV file.
 
