@@ -20,9 +20,6 @@ SCRIPT := $(SCRIPTPATH)/score.r
 # Java source code files
 SRCS := $(shell find $(CLASSPATH) -type f -name \*.java)
 
-# Java classes (deferred execution)
-CLASSES = $(shell find $(BUILD_DIR) -type f -printf "'%P'\n")
-
 # Java compilation command
 JC := javac
 JFLAGS := -d "$(BUILD_DIR)" -classpath "$(CLASSPATH)"
@@ -41,7 +38,7 @@ all: $(MAIN_JAR)
 
 # Make executable jar
 $(MAIN_JAR): $(MAIN_CLASS)
-	@$(JAR) $(JARFLAGS) "$(MAIN_JAR)" $(MAIN).$(MAIN) -C $(BUILD_DIR) .
+	@$(JAR) $(JARFLAGS) "$(MAIN_JAR)" $(MAIN).$(MAIN) -C $(BUILD_DIR) $(MAIN)
 	@$(RM) $(BUILD_DIR)
 
 # Compile classes
