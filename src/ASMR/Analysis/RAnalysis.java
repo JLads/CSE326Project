@@ -20,8 +20,7 @@ public class RAnalysis {
 	
 	public RAnalysis() {
 
-		scriptPath = String.join(File.separator, System.getProperty("user.dir"),
-				"src", "ASMR", "Analysis", "RScripts");
+		scriptPath = String.join(File.separator, System.getProperty("user.dir"), "scripts");
 		scoreScriptPath = String.join(File.separator, scriptPath, "score.r");
 	}
 
@@ -34,6 +33,9 @@ public class RAnalysis {
 		String windowsRPath = null;
 
 		try {
+			/* Registry interfacing code adapted from
+			 * https://github.com/yannrichet/rsession/blob/master/src/main/java/org/math/R/StartRserve.java
+			 */
 			Process rp = Runtime.getRuntime().exec("reg query HKLM\\Software\\R-core\\R");
 			RegistryStreamEater regEater = new RegistryStreamEater(rp.getInputStream());
 			rp.waitFor();
