@@ -33,7 +33,7 @@ public class RAnalysis {
 		String windowsRPath = null;
 
 		try {
-			/* Registry interfacing code adopted from
+			/* Registry interfacing code adapted from
 			 * https://github.com/yannrichet/rsession/blob/master/src/main/java/org/math/R/StartRserve.java
 			 */
 			Process rp = Runtime.getRuntime().exec("reg query HKLM\\Software\\R-core\\R");
